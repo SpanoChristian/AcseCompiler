@@ -1,0 +1,144 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+
+--------------
+ INSTRUCTIONS
+--------------
+      ADDI R1 R0 #-1       /* line 4 */
+      ADDI R2 R0 #31       /* line 5 */
+      ADDI R3 R0 #-1       /* line 6 */
+      WRITE R3 0
+      ADDI R5 R0 #-1       /* line 7 */
+      SHR R4 R5 R2 
+      WRITE R4 0
+      SHRI R6 R1 #31       /* line 8 */
+      WRITE R6 0
+      SHR R7 R1 R2         /* line 9 */
+      WRITE R7 0
+      ADDI R2 R0 #32       /* line 11 */
+      ADDI R8 R0 #-1       /* line 12 */
+      WRITE R8 0
+      ADDI R10 R0 #-1      /* line 13 */
+      SHR R9 R10 R2 
+      WRITE R9 0
+      SHRI R11 R1 #32      /* line 14 */
+      WRITE R11 0
+      SHR R12 R1 R2        /* line 15 */
+      WRITE R12 0
+      ADDI R2 R0 #33       /* line 17 */
+      ADDI R13 R0 #-1      /* line 18 */
+      WRITE R13 0
+      ADDI R15 R0 #-1      /* line 19 */
+      SHR R14 R15 R2 
+      WRITE R14 0
+      SHRI R16 R1 #33      /* line 20 */
+      WRITE R16 0
+      SHR R17 R1 R2        /* line 21 */
+      WRITE R17 0
+      ADDI R1 R0 #1073741824  /* line 24 */
+      ADDI R2 R0 #31       /* line 25 */
+      ADDI R18 R0 #0       /* line 26 */
+      WRITE R18 0
+      ADDI R20 R0 #1073741824  /* line 27 */
+      SHR R19 R20 R2 
+      WRITE R19 0
+      SHRI R21 R1 #31      /* line 28 */
+      WRITE R21 0
+      SHR R22 R1 R2        /* line 29 */
+      WRITE R22 0
+      ADDI R2 R0 #32       /* line 31 */
+      ADDI R23 R0 #0       /* line 32 */
+      WRITE R23 0
+      ADDI R25 R0 #1073741824  /* line 33 */
+      SHR R24 R25 R2 
+      WRITE R24 0
+      SHRI R26 R1 #32      /* line 34 */
+      WRITE R26 0
+      SHR R27 R1 R2        /* line 35 */
+      WRITE R27 0
+      ADDI R2 R0 #33       /* line 37 */
+      ADDI R28 R0 #0       /* line 38 */
+      WRITE R28 0
+      ADDI R30 R0 #1073741824  /* line 39 */
+      SHR R29 R30 R2 
+      WRITE R29 0
+      SHRI R31 R1 #33      /* line 40 */
+      WRITE R31 0
+      SHR R32 R1 R2        /* line 41 */
+      WRITE R32 0
+      ADDI R1 R0 #-1       /* line 44 */
+      ADDI R2 R0 #31       /* line 45 */
+      ADDI R33 R0 #-2147483648  /* line 46 */
+      WRITE R33 0
+      ADDI R35 R0 #-1      /* line 47 */
+      SHL R34 R35 R2 
+      WRITE R34 0
+      SHLI R36 R1 #31      /* line 48 */
+      WRITE R36 0
+      SHL R37 R1 R2        /* line 49 */
+      WRITE R37 0
+      ADDI R2 R0 #32       /* line 52 */
+      ADDI R38 R0 #0       /* line 53 */
+      WRITE R38 0
+      ADDI R40 R0 #-1      /* line 54 */
+      SHL R39 R40 R2 
+      WRITE R39 0
+      SHLI R41 R1 #32      /* line 55 */
+      WRITE R41 0
+      SHL R42 R1 R2        /* line 56 */
+      WRITE R42 0
+      ADDI R2 R0 #33       /* line 58 */
+      ADDI R43 R0 #0       /* line 59 */
+      WRITE R43 0
+      ADDI R45 R0 #-1      /* line 60 */
+      SHL R44 R45 R2 
+      WRITE R44 0
+      SHLI R46 R1 #33      /* line 61 */
+      WRITE R46 0
+      SHL R47 R1 R2        /* line 62 */
+      WRITE R47 0
+      ADDI R1 R0 #1        /* line 65 */
+      ADDI R2 R0 #31       /* line 66 */
+      ADDI R48 R0 #-2147483648  /* line 67 */
+      WRITE R48 0
+      ADDI R50 R0 #1       /* line 68 */
+      SHL R49 R50 R2 
+      WRITE R49 0
+      SHLI R51 R1 #31      /* line 69 */
+      WRITE R51 0
+      SHL R52 R1 R2        /* line 70 */
+      WRITE R52 0
+      ADDI R2 R0 #32       /* line 73 */
+      ADDI R53 R0 #0       /* line 74 */
+      WRITE R53 0
+      ADDI R55 R0 #1       /* line 75 */
+      SHL R54 R55 R2 
+      WRITE R54 0
+      SHLI R56 R1 #32      /* line 76 */
+      WRITE R56 0
+      SHL R57 R1 R2        /* line 77 */
+      WRITE R57 0
+      ADDI R2 R0 #33       /* line 79 */
+      ADDI R58 R0 #0       /* line 80 */
+      WRITE R58 0
+      ADDI R60 R0 #1       /* line 81 */
+      SHL R59 R60 R2 
+      WRITE R59 0
+      SHLI R61 R1 #33      /* line 82 */
+      WRITE R61 0
+      SHL R62 R1 R2        /* line 83 */
+      WRITE R62 0
+      HALT                 /* line 84 */

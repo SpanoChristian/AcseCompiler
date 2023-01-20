@@ -1,0 +1,116 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 5 */
+      READ R2 0            /* line 6 */
+      ADDI R3 R0 #550001   /* line 8 */
+      WRITE R3 0
+      ADD R4 R1 R2         /* line 10 */
+      WRITE R4 0
+      SUB R5 R1 R2         /* line 11 */
+      WRITE R5 0
+      DIV R6 R1 R2         /* line 12 */
+      WRITE R6 0
+      MUL R7 R1 R2         /* line 13 */
+      WRITE R7 0
+      ANDB R8 R1 R2        /* line 14 */
+      WRITE R8 0
+      ORB R9 R1 R2         /* line 15 */
+      WRITE R9 0
+      ANDL R10 R1 R2       /* line 16 */
+      WRITE R10 0
+      ORL R11 R1 R2        /* line 17 */
+      WRITE R11 0
+      ADDI R12 R0 #550002  /* line 19 */
+      WRITE R12 0
+      ADDI R13 R1 #5       /* line 21 */
+      WRITE R13 0
+      SUBI R14 R1 #5       /* line 22 */
+      WRITE R14 0
+      DIVI R15 R1 #5       /* line 23 */
+      WRITE R15 0
+      MULI R16 R1 #5       /* line 24 */
+      WRITE R16 0
+      ANDBI R17 R1 #21930  /* line 25 */
+      WRITE R17 0
+      ORBI R18 R1 #21930   /* line 26 */
+      WRITE R18 0
+      ANDLI R19 R1 #0      /* line 27 */
+      WRITE R19 0
+      ORLI R20 R1 #0       /* line 28 */
+      WRITE R20 0
+      ANDLI R21 R1 #100    /* line 29 */
+      WRITE R21 0
+      ORLI R22 R1 #100     /* line 30 */
+      WRITE R22 0
+      ADDI R23 R0 #550003  /* line 32 */
+      WRITE R23 0
+      ADDI R24 R2 #5       /* line 34 */
+      WRITE R24 0
+      SUBI R25 R2 #5       /* line 35 */
+      NEG R25 R0 R25 
+      WRITE R25 0
+      ADDI R27 R0 #5       /* line 36 */
+      DIV R26 R27 R2 
+      WRITE R26 0
+      MULI R28 R2 #5       /* line 37 */
+      WRITE R28 0
+      ANDBI R29 R2 #21930  /* line 38 */
+      WRITE R29 0
+      ORBI R30 R2 #21930   /* line 39 */
+      WRITE R30 0
+      ANDLI R31 R2 #0      /* line 40 */
+      WRITE R31 0
+      ORLI R32 R2 #0       /* line 41 */
+      WRITE R32 0
+      ANDLI R33 R2 #100    /* line 42 */
+      WRITE R33 0
+      ORLI R34 R2 #100     /* line 43 */
+      WRITE R34 0
+      ADDI R35 R0 #550004  /* line 45 */
+      WRITE R35 0
+      ADDI R36 R0 #15      /* line 47 */
+      WRITE R36 0
+      ADDI R37 R0 #5       /* line 48 */
+      WRITE R37 0
+      ADDI R38 R0 #2       /* line 49 */
+      WRITE R38 0
+      ADDI R39 R0 #50      /* line 50 */
+      WRITE R39 0
+      ADDI R40 R0 #20490   /* line 51 */
+      WRITE R40 0
+      ADDI R41 R0 #24570   /* line 52 */
+      WRITE R41 0
+      ADDI R42 R0 #0       /* line 53 */
+      WRITE R42 0
+      ADDI R43 R0 #0       /* line 54 */
+      WRITE R43 0
+      ADDI R44 R0 #0       /* line 55 */
+      WRITE R44 0
+      ADDI R45 R0 #1       /* line 56 */
+      WRITE R45 0
+      ADDI R46 R0 #0       /* line 57 */
+      WRITE R46 0
+      ADDI R47 R0 #1       /* line 58 */
+      WRITE R47 0
+      ADDI R48 R0 #1       /* line 59 */
+      WRITE R48 0
+      ADDI R49 R0 #1       /* line 60 */
+      WRITE R49 0
+      HALT                 /* line 61 */

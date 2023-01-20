@@ -1,0 +1,7 @@
+int a, b;
+int v[2];
+v[0]=2;
+v[1]=1;
+a=10;
+b=3;
+write(sum weighted by v [a, b-2]);

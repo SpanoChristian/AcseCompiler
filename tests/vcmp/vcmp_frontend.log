@@ -1,0 +1,78 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[x]
+   type = INTEGER, array size = 3
+   label = _x (ID=0)
+   location = N/A
+[y]
+   type = INTEGER, array size = 3
+   label = _y (ID=1)
+   location = N/A
+[z]
+   type = INTEGER, array size = 3
+   label = _z (ID=2)
+   location = N/A
+
+--------------
+ INSTRUCTIONS
+--------------
+      MOVA R1 _x           /* line 5 */
+      ADDI R2 R0 #0 
+      ADD (R1) R0 R2 
+      MOVA R3 _x           /* line 6 */
+      ADDI R3 R3 #1 
+      ADDI R4 R0 #4 
+      ADD (R3) R0 R4 
+      MOVA R5 _x           /* line 7 */
+      ADDI R5 R5 #2 
+      ADDI R6 R0 #-3 
+      ADD (R5) R0 R6 
+      MOVA R7 _y           /* line 9 */
+      ADDI R8 R0 #0 
+      ADD (R7) R0 R8 
+      MOVA R9 _y           /* line 10 */
+      ADDI R9 R9 #1 
+      ADDI R10 R0 #2 
+      ADD (R9) R0 R10 
+      MOVA R11 _y          /* line 11 */
+      ADDI R11 R11 #2 
+      ADDI R12 R0 #1 
+      ADD (R11) R0 R12 
+      ADDI R13 R0 #0       /* line 13 */
+L3    SUBI R14 R13 #3 
+      SLT R14 0
+      BEQ L4
+      MOVA R15 _x
+      ADD R15 R15 R13 
+      ADD R16 R0 (R15) 
+      MOVA R17 _y
+      ADD R17 R17 R13 
+      ADD R18 R0 (R17) 
+      SUB R19 R16 R18 
+      SGT R19 0
+      SUB R20 R16 R18 
+      SLT R20 0
+      MULI R21 R20 #-1 
+      ADD R22 R19 R21 
+      MOVA R23 _z
+      ADD R23 R23 R13 
+      ADD (R23) R0 R22 
+      ADDI R13 R13 #1 
+      BT L3
+L4    MOVA R24 _z          /* line 15 */
+      ADD R25 R0 (R24) 
+      WRITE R25 0
+      MOVA R26 _z          /* line 16 */
+      ADDI R26 R26 #1 
+      ADD R27 R0 (R26) 
+      WRITE R27 0
+      MOVA R28 _z          /* line 17 */
+      ADDI R28 R28 #2 
+      ADD R29 R0 (R28) 
+      WRITE R29 0
+      HALT 

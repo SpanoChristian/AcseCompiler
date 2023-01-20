@@ -1,0 +1,101 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 4 
+NUMBER OF USED VARIABLES : 31 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 23 
+	1.        MOVA R1 _x           /* line 5 */
+	2.        ADDI R2 R0 #0 
+	3.        ADD (R1) R0 R2 
+	4.        MOVA R3 _x           /* line 6 */
+	5.        ADDI R3 R3 #1 
+	6.        ADDI R4 R0 #4 
+	7.        ADD (R3) R0 R4 
+	8.        MOVA R5 _x           /* line 7 */
+	9.        ADDI R5 R5 #2 
+	10.        ADDI R6 R0 #-3 
+	11.        ADD (R5) R0 R6 
+	12.        MOVA R7 _y           /* line 9 */
+	13.        ADDI R8 R0 #0 
+	14.        ADD (R7) R0 R8 
+	15.        MOVA R9 _y           /* line 10 */
+	16.        ADDI R9 R9 #1 
+	17.        ADDI R10 R0 #2 
+	18.        ADD (R9) R0 R10 
+	19.        MOVA R11 _y          /* line 11 */
+	20.        ADDI R11 R11 #2 
+	21.        ADDI R12 R0 #1 
+	22.        ADD (R11) R0 R12 
+	23.        ADDI R13 R0 #0       /* line 13 */
+--------------------------
+[BLOCK 2] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 3 
+	1.  L3    SUBI R14 R13 #3 
+	2.        SLT R14 0
+	3.        BEQ L4
+--------------------------
+[BLOCK 3] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 17 
+	1.        MOVA R15 _x
+	2.        ADD R15 R15 R13 
+	3.        ADD R16 R0 (R15) 
+	4.        MOVA R17 _y
+	5.        ADD R17 R17 R13 
+	6.        ADD R18 R0 (R17) 
+	7.        SUB R19 R16 R18 
+	8.        SGT R19 0
+	9.        SUB R20 R16 R18 
+	10.        SLT R20 0
+	11.        MULI R21 R20 #-1 
+	12.        ADD R22 R19 R21 
+	13.        MOVA R23 _z
+	14.        ADD R23 R23 R13 
+	15.        ADD (R23) R0 R22 
+	16.        ADDI R13 R13 #1 
+	17.        BT L3
+--------------------------
+[BLOCK 4] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 12 
+	1.  L4    MOVA R24 _z          /* line 15 */
+	2.        ADD R25 R0 (R24) 
+	3.        WRITE R25 0
+	4.        MOVA R26 _z          /* line 16 */
+	5.        ADDI R26 R26 #1 
+	6.        ADD R27 R0 (R26) 
+	7.        WRITE R27 0
+	8.        MOVA R28 _z          /* line 17 */
+	9.        ADDI R28 R28 #2 
+	10.        ADD R29 R0 (R28) 
+	11.        WRITE R29 0
+	12.        HALT 
+**************************
+
+

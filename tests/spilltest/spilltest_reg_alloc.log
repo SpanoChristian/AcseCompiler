@@ -1,0 +1,110 @@
+
+
+*************************
+REGISTER ALLOCATION INFOS
+*************************
+AVAILABLE REGISTERS : 31 
+USED VARIABLES : 49 
+-------------------------
+LIVE_INTERVALS:
+	LIVE_INTERVAL of T1 : [0, 143] 
+	LIVE_INTERVAL of T2 : [1, 141] 
+	LIVE_INTERVAL of T3 : [2, 139] 
+	LIVE_INTERVAL of T4 : [3, 137] 
+	LIVE_INTERVAL of T5 : [4, 135] 
+	LIVE_INTERVAL of T6 : [5, 133] 
+	LIVE_INTERVAL of T7 : [6, 131] 
+	LIVE_INTERVAL of T8 : [7, 129] 
+	LIVE_INTERVAL of T9 : [8, 127] 
+	LIVE_INTERVAL of T10 : [9, 125] 
+	LIVE_INTERVAL of T11 : [10, 123] 
+	LIVE_INTERVAL of T12 : [11, 121] 
+	LIVE_INTERVAL of T13 : [12, 119] 
+	LIVE_INTERVAL of T14 : [13, 117] 
+	LIVE_INTERVAL of T15 : [14, 115] 
+	LIVE_INTERVAL of T16 : [15, 113] 
+	LIVE_INTERVAL of T17 : [16, 111] 
+	LIVE_INTERVAL of T18 : [17, 109] 
+	LIVE_INTERVAL of T19 : [18, 107] 
+	LIVE_INTERVAL of T20 : [19, 105] 
+	LIVE_INTERVAL of T21 : [20, 103] 
+	LIVE_INTERVAL of T22 : [21, 101] 
+	LIVE_INTERVAL of T23 : [22, 99] 
+	LIVE_INTERVAL of T24 : [23, 97] 
+	LIVE_INTERVAL of T25 : [24, 95] 
+	LIVE_INTERVAL of T26 : [25, 93] 
+	LIVE_INTERVAL of T27 : [26, 91] 
+	LIVE_INTERVAL of T28 : [27, 89] 
+	LIVE_INTERVAL of T29 : [28, 87] 
+	LIVE_INTERVAL of T30 : [29, 85] 
+	LIVE_INTERVAL of T31 : [30, 83] 
+	LIVE_INTERVAL of T32 : [31, 81] 
+	LIVE_INTERVAL of T33 : [32, 79] 
+	LIVE_INTERVAL of T34 : [33, 77] 
+	LIVE_INTERVAL of T35 : [34, 75] 
+	LIVE_INTERVAL of T36 : [35, 73] 
+	LIVE_INTERVAL of T37 : [36, 71] 
+	LIVE_INTERVAL of T38 : [37, 69] 
+	LIVE_INTERVAL of T39 : [38, 67] 
+	LIVE_INTERVAL of T40 : [39, 65] 
+	LIVE_INTERVAL of T41 : [40, 63] 
+	LIVE_INTERVAL of T42 : [41, 61] 
+	LIVE_INTERVAL of T43 : [42, 59] 
+	LIVE_INTERVAL of T44 : [43, 57] 
+	LIVE_INTERVAL of T45 : [44, 55] 
+	LIVE_INTERVAL of T46 : [45, 53] 
+	LIVE_INTERVAL of T47 : [46, 51] 
+	LIVE_INTERVAL of T48 : [47, 49] 
+-------------------------
+BINDINGS : 
+VAR T0 will be assigned to register R0 
+VAR T1 will be spilled 
+VAR T2 will be spilled 
+VAR T3 will be spilled 
+VAR T4 will be spilled 
+VAR T5 will be spilled 
+VAR T6 will be spilled 
+VAR T7 will be spilled 
+VAR T8 will be spilled 
+VAR T9 will be spilled 
+VAR T10 will be spilled 
+VAR T11 will be spilled 
+VAR T12 will be spilled 
+VAR T13 will be spilled 
+VAR T14 will be spilled 
+VAR T15 will be spilled 
+VAR T16 will be spilled 
+VAR T17 will be spilled 
+VAR T18 will be spilled 
+VAR T19 will be spilled 
+VAR T20 will be spilled 
+VAR T21 will be assigned to register R21 
+VAR T22 will be assigned to register R22 
+VAR T23 will be assigned to register R23 
+VAR T24 will be assigned to register R24 
+VAR T25 will be assigned to register R25 
+VAR T26 will be assigned to register R26 
+VAR T27 will be assigned to register R27 
+VAR T28 will be assigned to register R28 
+VAR T29 will be assigned to register R1 
+VAR T30 will be assigned to register R2 
+VAR T31 will be assigned to register R3 
+VAR T32 will be assigned to register R4 
+VAR T33 will be assigned to register R5 
+VAR T34 will be assigned to register R6 
+VAR T35 will be assigned to register R7 
+VAR T36 will be assigned to register R8 
+VAR T37 will be assigned to register R9 
+VAR T38 will be assigned to register R10 
+VAR T39 will be assigned to register R11 
+VAR T40 will be assigned to register R12 
+VAR T41 will be assigned to register R13 
+VAR T42 will be assigned to register R14 
+VAR T43 will be assigned to register R15 
+VAR T44 will be assigned to register R16 
+VAR T45 will be assigned to register R17 
+VAR T46 will be assigned to register R18 
+VAR T47 will be assigned to register R19 
+VAR T48 will be assigned to register R20 
+*************************
+

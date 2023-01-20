@@ -1,0 +1,31 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+
+--------------
+ INSTRUCTIONS
+--------------
+      ADDI R1 R0 #0        /* line 3 */
+      READ R2 0            /* line 4 */
+L2    ADDI R3 R1 #1        /* line 8 */
+      ADD R1 R0 R3 
+      SUBI R4 R2 #1        /* line 9 */
+      ADD R2 R0 R4 
+      SUBI R5 R2 #0        /* line 10 */
+      SGT R5 0
+      ANDB R5 R5 R5 
+      BNE L2
+      WRITE R1 0           /* line 12 */
+      HALT                 /* line 13 */

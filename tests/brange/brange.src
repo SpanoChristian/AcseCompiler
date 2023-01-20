@@ -1,0 +1,7 @@
+int v, r;
+
+read(v);
+
+r = 42 + brange(v, 2, 12);
+
+write(r);

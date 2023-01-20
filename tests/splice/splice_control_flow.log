@@ -1,0 +1,44 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 10 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 13 
+	1.        READ R1 0            /* line 2 */
+	2.        READ R2 0            /* line 3 */
+	3.        ADDI R7 R0 #-1       /* line 4 */
+	4.        SHLI R7 R7 #16 
+	5.        ANDB R4 R1 R7 
+	6.        ADDI R8 R0 #1 
+	7.        SHLI R8 R8 #16 
+	8.        ADDI R8 R8 #-1 
+	9.        ANDB R5 R2 R8 
+	10.        ORB R6 R4 R5 
+	11.        ADD R3 R0 R6 
+	12.        WRITE R3 0           /* line 5 */
+	13.        HALT 
+**************************
+
+

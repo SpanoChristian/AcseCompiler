@@ -1,0 +1,300 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[v00]
+   type = INTEGER, scalar initial value = 0
+   label = _v00 (ID=0)
+   location = R1
+[v01]
+   type = INTEGER, scalar initial value = 0
+   label = _v01 (ID=1)
+   location = R2
+[v02]
+   type = INTEGER, scalar initial value = 0
+   label = _v02 (ID=2)
+   location = R3
+[v03]
+   type = INTEGER, scalar initial value = 0
+   label = _v03 (ID=3)
+   location = R4
+[v04]
+   type = INTEGER, scalar initial value = 0
+   label = _v04 (ID=4)
+   location = R5
+[v05]
+   type = INTEGER, scalar initial value = 0
+   label = _v05 (ID=5)
+   location = R6
+[v06]
+   type = INTEGER, scalar initial value = 0
+   label = _v06 (ID=6)
+   location = R7
+[v07]
+   type = INTEGER, scalar initial value = 0
+   label = _v07 (ID=7)
+   location = R8
+[v08]
+   type = INTEGER, scalar initial value = 0
+   label = _v08 (ID=8)
+   location = R9
+[v09]
+   type = INTEGER, scalar initial value = 0
+   label = _v09 (ID=9)
+   location = R10
+[v0A]
+   type = INTEGER, scalar initial value = 0
+   label = _v0A (ID=10)
+   location = R11
+[v0B]
+   type = INTEGER, scalar initial value = 0
+   label = _v0B (ID=11)
+   location = R12
+[v0C]
+   type = INTEGER, scalar initial value = 0
+   label = _v0C (ID=12)
+   location = R13
+[v0D]
+   type = INTEGER, scalar initial value = 0
+   label = _v0D (ID=13)
+   location = R14
+[v0E]
+   type = INTEGER, scalar initial value = 0
+   label = _v0E (ID=14)
+   location = R15
+[v0F]
+   type = INTEGER, scalar initial value = 0
+   label = _v0F (ID=15)
+   location = R16
+[v10]
+   type = INTEGER, scalar initial value = 0
+   label = _v10 (ID=16)
+   location = R17
+[v11]
+   type = INTEGER, scalar initial value = 0
+   label = _v11 (ID=17)
+   location = R18
+[v12]
+   type = INTEGER, scalar initial value = 0
+   label = _v12 (ID=18)
+   location = R19
+[v13]
+   type = INTEGER, scalar initial value = 0
+   label = _v13 (ID=19)
+   location = R20
+[v14]
+   type = INTEGER, scalar initial value = 0
+   label = _v14 (ID=20)
+   location = R21
+[v15]
+   type = INTEGER, scalar initial value = 0
+   label = _v15 (ID=21)
+   location = R22
+[v16]
+   type = INTEGER, scalar initial value = 0
+   label = _v16 (ID=22)
+   location = R23
+[v17]
+   type = INTEGER, scalar initial value = 0
+   label = _v17 (ID=23)
+   location = R24
+[v18]
+   type = INTEGER, scalar initial value = 0
+   label = _v18 (ID=24)
+   location = R25
+[v19]
+   type = INTEGER, scalar initial value = 0
+   label = _v19 (ID=25)
+   location = R26
+[v1A]
+   type = INTEGER, scalar initial value = 0
+   label = _v1A (ID=26)
+   location = R27
+[v1B]
+   type = INTEGER, scalar initial value = 0
+   label = _v1B (ID=27)
+   location = R28
+[v1C]
+   type = INTEGER, scalar initial value = 0
+   label = _v1C (ID=28)
+   location = R29
+[v1D]
+   type = INTEGER, scalar initial value = 0
+   label = _v1D (ID=29)
+   location = R30
+[v1E]
+   type = INTEGER, scalar initial value = 0
+   label = _v1E (ID=30)
+   location = R31
+[v1F]
+   type = INTEGER, scalar initial value = 0
+   label = _v1F (ID=31)
+   location = R32
+[v20]
+   type = INTEGER, scalar initial value = 0
+   label = _v20 (ID=32)
+   location = R33
+[v21]
+   type = INTEGER, scalar initial value = 0
+   label = _v21 (ID=33)
+   location = R34
+[v22]
+   type = INTEGER, scalar initial value = 0
+   label = _v22 (ID=34)
+   location = R35
+[v23]
+   type = INTEGER, scalar initial value = 0
+   label = _v23 (ID=35)
+   location = R36
+[v24]
+   type = INTEGER, scalar initial value = 0
+   label = _v24 (ID=36)
+   location = R37
+[v25]
+   type = INTEGER, scalar initial value = 0
+   label = _v25 (ID=37)
+   location = R38
+[v26]
+   type = INTEGER, scalar initial value = 0
+   label = _v26 (ID=38)
+   location = R39
+[v27]
+   type = INTEGER, scalar initial value = 0
+   label = _v27 (ID=39)
+   location = R40
+[v28]
+   type = INTEGER, scalar initial value = 0
+   label = _v28 (ID=40)
+   location = R41
+[v29]
+   type = INTEGER, scalar initial value = 0
+   label = _v29 (ID=41)
+   location = R42
+[v2A]
+   type = INTEGER, scalar initial value = 0
+   label = _v2A (ID=42)
+   location = R43
+[v2B]
+   type = INTEGER, scalar initial value = 0
+   label = _v2B (ID=43)
+   location = R44
+[v2C]
+   type = INTEGER, scalar initial value = 0
+   label = _v2C (ID=44)
+   location = R45
+[v2D]
+   type = INTEGER, scalar initial value = 0
+   label = _v2D (ID=45)
+   location = R46
+[v2E]
+   type = INTEGER, scalar initial value = 0
+   label = _v2E (ID=46)
+   location = R47
+[v2F]
+   type = INTEGER, scalar initial value = 0
+   label = _v2F (ID=47)
+   location = R48
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 5 */
+      READ R2 0            /* line 6 */
+      READ R3 0            /* line 7 */
+      READ R4 0            /* line 8 */
+      READ R5 0            /* line 9 */
+      READ R6 0            /* line 10 */
+      READ R7 0            /* line 11 */
+      READ R8 0            /* line 12 */
+      READ R9 0            /* line 13 */
+      READ R10 0           /* line 14 */
+      READ R11 0           /* line 15 */
+      READ R12 0           /* line 16 */
+      READ R13 0           /* line 17 */
+      READ R14 0           /* line 18 */
+      READ R15 0           /* line 19 */
+      READ R16 0           /* line 20 */
+      READ R17 0           /* line 21 */
+      READ R18 0           /* line 22 */
+      READ R19 0           /* line 23 */
+      READ R20 0           /* line 24 */
+      READ R21 0           /* line 25 */
+      READ R22 0           /* line 26 */
+      READ R23 0           /* line 27 */
+      READ R24 0           /* line 28 */
+      READ R25 0           /* line 29 */
+      READ R26 0           /* line 30 */
+      READ R27 0           /* line 31 */
+      READ R28 0           /* line 32 */
+      READ R29 0           /* line 33 */
+      READ R30 0           /* line 34 */
+      READ R31 0           /* line 35 */
+      READ R32 0           /* line 36 */
+      READ R33 0           /* line 37 */
+      READ R34 0           /* line 38 */
+      READ R35 0           /* line 39 */
+      READ R36 0           /* line 40 */
+      READ R37 0           /* line 41 */
+      READ R38 0           /* line 42 */
+      READ R39 0           /* line 43 */
+      READ R40 0           /* line 44 */
+      READ R41 0           /* line 45 */
+      READ R42 0           /* line 46 */
+      READ R43 0           /* line 47 */
+      READ R44 0           /* line 48 */
+      READ R45 0           /* line 49 */
+      READ R46 0           /* line 50 */
+      READ R47 0           /* line 51 */
+      READ R48 0           /* line 52 */
+      WRITE R48 0          /* line 53 */
+      WRITE R47 0          /* line 54 */
+      WRITE R46 0          /* line 55 */
+      WRITE R45 0          /* line 56 */
+      WRITE R44 0          /* line 57 */
+      WRITE R43 0          /* line 58 */
+      WRITE R42 0          /* line 59 */
+      WRITE R41 0          /* line 60 */
+      WRITE R40 0          /* line 61 */
+      WRITE R39 0          /* line 62 */
+      WRITE R38 0          /* line 63 */
+      WRITE R37 0          /* line 64 */
+      WRITE R36 0          /* line 65 */
+      WRITE R35 0          /* line 66 */
+      WRITE R34 0          /* line 67 */
+      WRITE R33 0          /* line 68 */
+      WRITE R32 0          /* line 69 */
+      WRITE R31 0          /* line 70 */
+      WRITE R30 0          /* line 71 */
+      WRITE R29 0          /* line 72 */
+      WRITE R28 0          /* line 73 */
+      WRITE R27 0          /* line 74 */
+      WRITE R26 0          /* line 75 */
+      WRITE R25 0          /* line 76 */
+      WRITE R24 0          /* line 77 */
+      WRITE R23 0          /* line 78 */
+      WRITE R22 0          /* line 79 */
+      WRITE R21 0          /* line 80 */
+      WRITE R20 0          /* line 81 */
+      WRITE R19 0          /* line 82 */
+      WRITE R18 0          /* line 83 */
+      WRITE R17 0          /* line 84 */
+      WRITE R16 0          /* line 85 */
+      WRITE R15 0          /* line 86 */
+      WRITE R14 0          /* line 87 */
+      WRITE R13 0          /* line 88 */
+      WRITE R12 0          /* line 89 */
+      WRITE R11 0          /* line 90 */
+      WRITE R10 0          /* line 91 */
+      WRITE R9 0           /* line 92 */
+      WRITE R8 0           /* line 93 */
+      WRITE R7 0           /* line 94 */
+      WRITE R6 0           /* line 95 */
+      WRITE R5 0           /* line 96 */
+      WRITE R4 0           /* line 97 */
+      WRITE R3 0           /* line 98 */
+      WRITE R2 0           /* line 99 */
+      WRITE R1 0           /* line 100 */
+      HALT                 /* line 101 */

@@ -1,0 +1,26 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[v]
+   type = INTEGER, scalar initial value = 0
+   label = _v (ID=0)
+   location = R1
+[r]
+   type = INTEGER, scalar initial value = 0
+   label = _r (ID=1)
+   location = R2
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 3 */
+      SHRI R3 R1 #2        /* line 5 */
+      ANDBI R4 R3 #2047 
+      ADDI R5 R4 #42 
+      ADD R2 R0 R5 
+      WRITE R2 0           /* line 7 */
+      HALT 

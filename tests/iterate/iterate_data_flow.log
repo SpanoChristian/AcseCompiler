@@ -1,0 +1,226 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 6 
+NUMBER OF USED VARIABLES : 12 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 6 
+	1.        READ R1 0            /* line 3 */
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        STORE R1 _x
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R1]
+			LIVE OUT = []
+	3.        READ R2 0            /* line 4 */
+			DEFS = [R2]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R2]
+	4.        STORE R2 _y
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = []
+	5.        ADDI R3 R0 #0        /* line 6 */
+			DEFS = [R3, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R3]
+	6.        BT L2
+			DEFS = []
+			USES = []
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+--------------------------
+[BLOCK 2] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 10 
+	1.  L3    LOAD R1 _x
+			DEFS = [R1]
+			USES = []
+			LIVE IN = [R3, R4]
+			LIVE OUT = [R3, R4, R1]
+	2.        SUBI R5 R1 #1        /* line 7 */
+			DEFS = [R5, PSW]
+			USES = [R1]
+			LIVE IN = [R3, R4, R1]
+			LIVE OUT = [R3, R4, R5]
+	3.        ADD R1 R0 R5 
+			DEFS = [R1, PSW]
+			USES = [R0, R5]
+			LIVE IN = [R3, R4, R5]
+			LIVE OUT = [R3, R4, R1]
+	4.        STORE R1 _x
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R3, R4, R1]
+			LIVE OUT = [R3, R4]
+	5.        LOAD R2 _y
+			DEFS = [R2]
+			USES = []
+			LIVE IN = [R3, R4]
+			LIVE OUT = [R3, R4, R2]
+	6.        ADDI R6 R2 #1        /* line 8 */
+			DEFS = [R6, PSW]
+			USES = [R2]
+			LIVE IN = [R3, R4, R2]
+			LIVE OUT = [R3, R4, R6]
+	7.        ADD R2 R0 R6 
+			DEFS = [R2, PSW]
+			USES = [R0, R6]
+			LIVE IN = [R3, R4, R6]
+			LIVE OUT = [R3, R4, R2]
+	8.        STORE R2 _y
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R3, R4, R2]
+			LIVE OUT = [R3, R4]
+	9.        ADDI R3 R3 #1        /* line 9 */
+			DEFS = [R3, PSW]
+			USES = [R3]
+			LIVE IN = [R3, R4]
+			LIVE OUT = [R3, R4]
+	10.        BT L4
+			DEFS = []
+			USES = []
+			LIVE IN = [R3, R4]
+			LIVE OUT = [R3, R4]
+--------------------------
+[BLOCK 3] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L2    LOAD R2 _y
+			DEFS = [R2]
+			USES = []
+			LIVE IN = [R3]
+			LIVE OUT = [R3, R2]
+	2.        ADDI R7 R2 #5        /* line 10 */
+			DEFS = [R7, PSW]
+			USES = [R2]
+			LIVE IN = [R3, R2]
+			LIVE OUT = [R3, R7, R2]
+	3.        STORE R2 _y
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R3, R7, R2]
+			LIVE OUT = [R3, R7]
+	4.        ADD R4 R0 R7 
+			DEFS = [R4, PSW]
+			USES = [R0, R7]
+			LIVE IN = [R3, R7]
+			LIVE OUT = [R3, R4]
+--------------------------
+[BLOCK 4] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 7 
+	1.  L4    LOAD R1 _x
+			DEFS = [R1]
+			USES = []
+			LIVE IN = [R3, R4]
+			LIVE OUT = [R3, R4, R1]
+	2.        SUBI R8 R1 #0        /* line 11 */
+			DEFS = [R8, PSW]
+			USES = [R1]
+			LIVE IN = [R3, R4, R1]
+			LIVE OUT = [R3, R4, PSW, R1]
+	3.        STORE R1 _x
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R3, R4, PSW, R1]
+			LIVE OUT = [R3, R4, PSW]
+	4.        SLE R8 0
+			DEFS = [R8, PSW]
+			USES = [PSW]
+			LIVE IN = [R3, R4, PSW]
+			LIVE OUT = [R3, R4, R8]
+	5.        SUBI R9 R8 #0 
+			DEFS = [R9, PSW]
+			USES = [R8]
+			LIVE IN = [R3, R4, R8]
+			LIVE OUT = [R3, R4, PSW]
+	6.        SNE R9 0
+			DEFS = [R9, PSW]
+			USES = [PSW]
+			LIVE IN = [R3, R4, PSW]
+			LIVE OUT = [R3, R4, PSW]
+	7.        BNE L5
+			DEFS = []
+			USES = [PSW]
+			LIVE IN = [R3, R4, PSW]
+			LIVE OUT = [R3, R4]
+--------------------------
+[BLOCK 5] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 3 
+	1.        SUB R10 R3 R4 
+			DEFS = [R10, PSW]
+			USES = [R3, R4]
+			LIVE IN = [R3, R4]
+			LIVE OUT = [PSW, R3, R4]
+	2.        SLT R10 0
+			DEFS = [R10, PSW]
+			USES = [PSW]
+			LIVE IN = [PSW, R3, R4]
+			LIVE OUT = [PSW, R3, R4]
+	3.        BNE L3
+			DEFS = []
+			USES = [PSW]
+			LIVE IN = [PSW, R3, R4]
+			LIVE OUT = [R3, R4]
+--------------------------
+[BLOCK 6] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L5    LOAD R2 _y
+			DEFS = [R2]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R2]
+	2.        WRITE R2 0           /* line 13 */
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = [R2]
+	3.        STORE R2 _y
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = []
+	4.        HALT 
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

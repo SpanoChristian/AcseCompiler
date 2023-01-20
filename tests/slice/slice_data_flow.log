@@ -1,0 +1,996 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 104 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 193 
+	1.        MOVA R1 _a           /* line 4 */
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        ADDI R2 R0 #0 
+			DEFS = [R2, PSW]
+			USES = [R0]
+			LIVE IN = [R1]
+			LIVE OUT = [R2, R1]
+	3.        ADD (R1) R0 R2 
+			DEFS = [PSW]
+			USES = [R0, R2, R1]
+			LIVE IN = [R2, R1]
+			LIVE OUT = []
+	4.        MOVA R3 _a           /* line 5 */
+			DEFS = [R3]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R3]
+	5.        ADDI R3 R3 #1 
+			DEFS = [R3, PSW]
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+	6.        ADDI R4 R0 #1 
+			DEFS = [R4, PSW]
+			USES = [R0]
+			LIVE IN = [R3]
+			LIVE OUT = [R4, R3]
+	7.        ADD (R3) R0 R4 
+			DEFS = [PSW]
+			USES = [R0, R4, R3]
+			LIVE IN = [R4, R3]
+			LIVE OUT = []
+	8.        MOVA R5 _a           /* line 6 */
+			DEFS = [R5]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R5]
+	9.        ADDI R5 R5 #2 
+			DEFS = [R5, PSW]
+			USES = [R5]
+			LIVE IN = [R5]
+			LIVE OUT = [R5]
+	10.        ADDI R6 R0 #2 
+			DEFS = [R6, PSW]
+			USES = [R0]
+			LIVE IN = [R5]
+			LIVE OUT = [R6, R5]
+	11.        ADD (R5) R0 R6 
+			DEFS = [PSW]
+			USES = [R0, R6, R5]
+			LIVE IN = [R6, R5]
+			LIVE OUT = []
+	12.        MOVA R7 _a           /* line 7 */
+			DEFS = [R7]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R7]
+	13.        ADDI R7 R7 #3 
+			DEFS = [R7, PSW]
+			USES = [R7]
+			LIVE IN = [R7]
+			LIVE OUT = [R7]
+	14.        ADDI R8 R0 #3 
+			DEFS = [R8, PSW]
+			USES = [R0]
+			LIVE IN = [R7]
+			LIVE OUT = [R8, R7]
+	15.        ADD (R7) R0 R8 
+			DEFS = [PSW]
+			USES = [R0, R8, R7]
+			LIVE IN = [R8, R7]
+			LIVE OUT = []
+	16.        MOVA R9 _a           /* line 8 */
+			DEFS = [R9]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R9]
+	17.        ADDI R9 R9 #4 
+			DEFS = [R9, PSW]
+			USES = [R9]
+			LIVE IN = [R9]
+			LIVE OUT = [R9]
+	18.        ADDI R10 R0 #4 
+			DEFS = [R10, PSW]
+			USES = [R0]
+			LIVE IN = [R9]
+			LIVE OUT = [R10, R9]
+	19.        ADD (R9) R0 R10 
+			DEFS = [PSW]
+			USES = [R0, R10, R9]
+			LIVE IN = [R10, R9]
+			LIVE OUT = []
+	20.        MOVA R11 _a          /* line 9 */
+			DEFS = [R11]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R11]
+	21.        ADDI R11 R11 #5 
+			DEFS = [R11, PSW]
+			USES = [R11]
+			LIVE IN = [R11]
+			LIVE OUT = [R11]
+	22.        ADDI R12 R0 #5 
+			DEFS = [R12, PSW]
+			USES = [R0]
+			LIVE IN = [R11]
+			LIVE OUT = [R12, R11]
+	23.        ADD (R11) R0 R12 
+			DEFS = [PSW]
+			USES = [R0, R12, R11]
+			LIVE IN = [R12, R11]
+			LIVE OUT = []
+	24.        MOVA R13 _a          /* line 10 */
+			DEFS = [R13]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R13]
+	25.        ADDI R13 R13 #6 
+			DEFS = [R13, PSW]
+			USES = [R13]
+			LIVE IN = [R13]
+			LIVE OUT = [R13]
+	26.        ADDI R14 R0 #6 
+			DEFS = [R14, PSW]
+			USES = [R0]
+			LIVE IN = [R13]
+			LIVE OUT = [R14, R13]
+	27.        ADD (R13) R0 R14 
+			DEFS = [PSW]
+			USES = [R0, R14, R13]
+			LIVE IN = [R14, R13]
+			LIVE OUT = []
+	28.        MOVA R15 _a          /* line 11 */
+			DEFS = [R15]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R15]
+	29.        ADDI R15 R15 #7 
+			DEFS = [R15, PSW]
+			USES = [R15]
+			LIVE IN = [R15]
+			LIVE OUT = [R15]
+	30.        ADDI R16 R0 #7 
+			DEFS = [R16, PSW]
+			USES = [R0]
+			LIVE IN = [R15]
+			LIVE OUT = [R16, R15]
+	31.        ADD (R15) R0 R16 
+			DEFS = [PSW]
+			USES = [R0, R16, R15]
+			LIVE IN = [R16, R15]
+			LIVE OUT = []
+	32.        MOVA R17 _a          /* line 12 */
+			DEFS = [R17]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R17]
+	33.        ADDI R17 R17 #8 
+			DEFS = [R17, PSW]
+			USES = [R17]
+			LIVE IN = [R17]
+			LIVE OUT = [R17]
+	34.        ADDI R18 R0 #8 
+			DEFS = [R18, PSW]
+			USES = [R0]
+			LIVE IN = [R17]
+			LIVE OUT = [R18, R17]
+	35.        ADD (R17) R0 R18 
+			DEFS = [PSW]
+			USES = [R0, R18, R17]
+			LIVE IN = [R18, R17]
+			LIVE OUT = []
+	36.        MOVA R19 _a          /* line 13 */
+			DEFS = [R19]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R19]
+	37.        ADDI R19 R19 #9 
+			DEFS = [R19, PSW]
+			USES = [R19]
+			LIVE IN = [R19]
+			LIVE OUT = [R19]
+	38.        ADDI R20 R0 #9 
+			DEFS = [R20, PSW]
+			USES = [R0]
+			LIVE IN = [R19]
+			LIVE OUT = [R20, R19]
+	39.        ADD (R19) R0 R20 
+			DEFS = [PSW]
+			USES = [R0, R20, R19]
+			LIVE IN = [R20, R19]
+			LIVE OUT = []
+	40.        MOVA R21 _a          /* line 15 */
+			DEFS = [R21]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R21]
+	41.        ADD R22 R0 (R21) 
+			DEFS = [R22, PSW]
+			USES = [R0, R21]
+			LIVE IN = [R21]
+			LIVE OUT = [R22]
+	42.        MOVA R23 _a
+			DEFS = [R23]
+			USES = []
+			LIVE IN = [R22]
+			LIVE OUT = [R22, R23]
+	43.        ADDI R23 R23 #1 
+			DEFS = [R23, PSW]
+			USES = [R23]
+			LIVE IN = [R22, R23]
+			LIVE OUT = [R22, R23]
+	44.        ADD R24 R0 (R23) 
+			DEFS = [R24, PSW]
+			USES = [R0, R23]
+			LIVE IN = [R22, R23]
+			LIVE OUT = [R24, R22]
+	45.        MOVA R25 _a
+			DEFS = [R25]
+			USES = []
+			LIVE IN = [R24, R22]
+			LIVE OUT = [R24, R22, R25]
+	46.        ADDI R25 R25 #2 
+			DEFS = [R25, PSW]
+			USES = [R25]
+			LIVE IN = [R24, R22, R25]
+			LIVE OUT = [R24, R22, R25]
+	47.        ADD R26 R0 (R25) 
+			DEFS = [R26, PSW]
+			USES = [R0, R25]
+			LIVE IN = [R24, R22, R25]
+			LIVE OUT = [R26, R24, R22]
+	48.        MOVA R27 _a
+			DEFS = [R27]
+			USES = []
+			LIVE IN = [R26, R24, R22]
+			LIVE OUT = [R26, R24, R22, R27]
+	49.        ADDI R27 R27 #3 
+			DEFS = [R27, PSW]
+			USES = [R27]
+			LIVE IN = [R26, R24, R22, R27]
+			LIVE OUT = [R26, R24, R22, R27]
+	50.        ADD R28 R0 (R27) 
+			DEFS = [R28, PSW]
+			USES = [R0, R27]
+			LIVE IN = [R26, R24, R22, R27]
+			LIVE OUT = [R28, R26, R24, R22]
+	51.        MOVA R29 _a
+			DEFS = [R29]
+			USES = []
+			LIVE IN = [R28, R26, R24, R22]
+			LIVE OUT = [R28, R26, R24, R22, R29]
+	52.        ADDI R29 R29 #4 
+			DEFS = [R29, PSW]
+			USES = [R29]
+			LIVE IN = [R28, R26, R24, R22, R29]
+			LIVE OUT = [R28, R26, R24, R22, R29]
+	53.        ADD R30 R0 (R29) 
+			DEFS = [R30, PSW]
+			USES = [R0, R29]
+			LIVE IN = [R28, R26, R24, R22, R29]
+			LIVE OUT = [R30, R28, R26, R24, R22]
+	54.        MOVA R31 _b
+			DEFS = [R31]
+			USES = []
+			LIVE IN = [R30, R28, R26, R24, R22]
+			LIVE OUT = [R30, R28, R26, R24, R22, R31]
+	55.        ADD (R31) R0 R22 
+			DEFS = [PSW]
+			USES = [R0, R22, R31]
+			LIVE IN = [R30, R28, R26, R24, R22, R31]
+			LIVE OUT = [R30, R28, R26, R24]
+	56.        MOVA R32 _b
+			DEFS = [R32]
+			USES = []
+			LIVE IN = [R30, R28, R26, R24]
+			LIVE OUT = [R30, R28, R26, R24, R32]
+	57.        ADDI R32 R32 #1 
+			DEFS = [R32, PSW]
+			USES = [R32]
+			LIVE IN = [R30, R28, R26, R24, R32]
+			LIVE OUT = [R30, R28, R26, R24, R32]
+	58.        ADD (R32) R0 R24 
+			DEFS = [PSW]
+			USES = [R0, R24, R32]
+			LIVE IN = [R30, R28, R26, R24, R32]
+			LIVE OUT = [R30, R28, R26]
+	59.        MOVA R33 _b
+			DEFS = [R33]
+			USES = []
+			LIVE IN = [R30, R28, R26]
+			LIVE OUT = [R30, R28, R26, R33]
+	60.        ADDI R33 R33 #2 
+			DEFS = [R33, PSW]
+			USES = [R33]
+			LIVE IN = [R30, R28, R26, R33]
+			LIVE OUT = [R30, R28, R26, R33]
+	61.        ADD (R33) R0 R26 
+			DEFS = [PSW]
+			USES = [R0, R26, R33]
+			LIVE IN = [R30, R28, R26, R33]
+			LIVE OUT = [R30, R28]
+	62.        MOVA R34 _b
+			DEFS = [R34]
+			USES = []
+			LIVE IN = [R30, R28]
+			LIVE OUT = [R30, R28, R34]
+	63.        ADDI R34 R34 #3 
+			DEFS = [R34, PSW]
+			USES = [R34]
+			LIVE IN = [R30, R28, R34]
+			LIVE OUT = [R30, R28, R34]
+	64.        ADD (R34) R0 R28 
+			DEFS = [PSW]
+			USES = [R0, R28, R34]
+			LIVE IN = [R30, R28, R34]
+			LIVE OUT = [R30]
+	65.        MOVA R35 _b
+			DEFS = [R35]
+			USES = []
+			LIVE IN = [R30]
+			LIVE OUT = [R30, R35]
+	66.        ADDI R35 R35 #4 
+			DEFS = [R35, PSW]
+			USES = [R35]
+			LIVE IN = [R30, R35]
+			LIVE OUT = [R30, R35]
+	67.        ADD (R35) R0 R30 
+			DEFS = [PSW]
+			USES = [R0, R30, R35]
+			LIVE IN = [R30, R35]
+			LIVE OUT = []
+	68.        MOVA R36 _b          /* line 16 */
+			DEFS = [R36]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R36]
+	69.        ADD R37 R0 (R36) 
+			DEFS = [R37, PSW]
+			USES = [R0, R36]
+			LIVE IN = [R36]
+			LIVE OUT = [R37]
+	70.        WRITE R37 0
+			DEFS = []
+			USES = [R37]
+			LIVE IN = [R37]
+			LIVE OUT = []
+	71.        MOVA R38 _b          /* line 17 */
+			DEFS = [R38]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R38]
+	72.        ADDI R38 R38 #1 
+			DEFS = [R38, PSW]
+			USES = [R38]
+			LIVE IN = [R38]
+			LIVE OUT = [R38]
+	73.        ADD R39 R0 (R38) 
+			DEFS = [R39, PSW]
+			USES = [R0, R38]
+			LIVE IN = [R38]
+			LIVE OUT = [R39]
+	74.        WRITE R39 0
+			DEFS = []
+			USES = [R39]
+			LIVE IN = [R39]
+			LIVE OUT = []
+	75.        MOVA R40 _b          /* line 18 */
+			DEFS = [R40]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R40]
+	76.        ADDI R40 R40 #2 
+			DEFS = [R40, PSW]
+			USES = [R40]
+			LIVE IN = [R40]
+			LIVE OUT = [R40]
+	77.        ADD R41 R0 (R40) 
+			DEFS = [R41, PSW]
+			USES = [R0, R40]
+			LIVE IN = [R40]
+			LIVE OUT = [R41]
+	78.        WRITE R41 0
+			DEFS = []
+			USES = [R41]
+			LIVE IN = [R41]
+			LIVE OUT = []
+	79.        MOVA R42 _b          /* line 19 */
+			DEFS = [R42]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R42]
+	80.        ADDI R42 R42 #3 
+			DEFS = [R42, PSW]
+			USES = [R42]
+			LIVE IN = [R42]
+			LIVE OUT = [R42]
+	81.        ADD R43 R0 (R42) 
+			DEFS = [R43, PSW]
+			USES = [R0, R42]
+			LIVE IN = [R42]
+			LIVE OUT = [R43]
+	82.        WRITE R43 0
+			DEFS = []
+			USES = [R43]
+			LIVE IN = [R43]
+			LIVE OUT = []
+	83.        MOVA R44 _b          /* line 20 */
+			DEFS = [R44]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R44]
+	84.        ADDI R44 R44 #4 
+			DEFS = [R44, PSW]
+			USES = [R44]
+			LIVE IN = [R44]
+			LIVE OUT = [R44]
+	85.        ADD R45 R0 (R44) 
+			DEFS = [R45, PSW]
+			USES = [R0, R44]
+			LIVE IN = [R44]
+			LIVE OUT = [R45]
+	86.        WRITE R45 0
+			DEFS = []
+			USES = [R45]
+			LIVE IN = [R45]
+			LIVE OUT = []
+	87.        MOVA R46 _a          /* line 22 */
+			DEFS = [R46]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R46]
+	88.        ADDI R46 R46 #9 
+			DEFS = [R46, PSW]
+			USES = [R46]
+			LIVE IN = [R46]
+			LIVE OUT = [R46]
+	89.        ADD R47 R0 (R46) 
+			DEFS = [R47, PSW]
+			USES = [R0, R46]
+			LIVE IN = [R46]
+			LIVE OUT = [R47]
+	90.        MOVA R48 _a
+			DEFS = [R48]
+			USES = []
+			LIVE IN = [R47]
+			LIVE OUT = [R47, R48]
+	91.        ADD R49 R0 (R48) 
+			DEFS = [R49, PSW]
+			USES = [R0, R48]
+			LIVE IN = [R47, R48]
+			LIVE OUT = [R49, R47]
+	92.        MOVA R50 _a
+			DEFS = [R50]
+			USES = []
+			LIVE IN = [R49, R47]
+			LIVE OUT = [R49, R47, R50]
+	93.        ADDI R50 R50 #1 
+			DEFS = [R50, PSW]
+			USES = [R50]
+			LIVE IN = [R49, R47, R50]
+			LIVE OUT = [R49, R47, R50]
+	94.        ADD R51 R0 (R50) 
+			DEFS = [R51, PSW]
+			USES = [R0, R50]
+			LIVE IN = [R49, R47, R50]
+			LIVE OUT = [R51, R49, R47]
+	95.        MOVA R52 _a
+			DEFS = [R52]
+			USES = []
+			LIVE IN = [R51, R49, R47]
+			LIVE OUT = [R51, R49, R47, R52]
+	96.        ADDI R52 R52 #2 
+			DEFS = [R52, PSW]
+			USES = [R52]
+			LIVE IN = [R51, R49, R47, R52]
+			LIVE OUT = [R51, R49, R47, R52]
+	97.        ADD R53 R0 (R52) 
+			DEFS = [R53, PSW]
+			USES = [R0, R52]
+			LIVE IN = [R51, R49, R47, R52]
+			LIVE OUT = [R53, R51, R49, R47]
+	98.        MOVA R54 _b
+			DEFS = [R54]
+			USES = []
+			LIVE IN = [R53, R51, R49, R47]
+			LIVE OUT = [R53, R51, R49, R47, R54]
+	99.        ADD (R54) R0 R47 
+			DEFS = [PSW]
+			USES = [R0, R47, R54]
+			LIVE IN = [R53, R51, R49, R47, R54]
+			LIVE OUT = [R53, R51, R49]
+	100.        MOVA R55 _b
+			DEFS = [R55]
+			USES = []
+			LIVE IN = [R53, R51, R49]
+			LIVE OUT = [R53, R51, R49, R55]
+	101.        ADDI R55 R55 #1 
+			DEFS = [R55, PSW]
+			USES = [R55]
+			LIVE IN = [R53, R51, R49, R55]
+			LIVE OUT = [R53, R51, R49, R55]
+	102.        ADD (R55) R0 R49 
+			DEFS = [PSW]
+			USES = [R0, R49, R55]
+			LIVE IN = [R53, R51, R49, R55]
+			LIVE OUT = [R53, R51]
+	103.        MOVA R56 _b
+			DEFS = [R56]
+			USES = []
+			LIVE IN = [R53, R51]
+			LIVE OUT = [R53, R51, R56]
+	104.        ADDI R56 R56 #2 
+			DEFS = [R56, PSW]
+			USES = [R56]
+			LIVE IN = [R53, R51, R56]
+			LIVE OUT = [R53, R51, R56]
+	105.        ADD (R56) R0 R51 
+			DEFS = [PSW]
+			USES = [R0, R51, R56]
+			LIVE IN = [R53, R51, R56]
+			LIVE OUT = [R53]
+	106.        MOVA R57 _b
+			DEFS = [R57]
+			USES = []
+			LIVE IN = [R53]
+			LIVE OUT = [R53, R57]
+	107.        ADDI R57 R57 #3 
+			DEFS = [R57, PSW]
+			USES = [R57]
+			LIVE IN = [R53, R57]
+			LIVE OUT = [R53, R57]
+	108.        ADD (R57) R0 R53 
+			DEFS = [PSW]
+			USES = [R0, R53, R57]
+			LIVE IN = [R53, R57]
+			LIVE OUT = []
+	109.        MOVA R58 _b          /* line 23 */
+			DEFS = [R58]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R58]
+	110.        ADD R59 R0 (R58) 
+			DEFS = [R59, PSW]
+			USES = [R0, R58]
+			LIVE IN = [R58]
+			LIVE OUT = [R59]
+	111.        WRITE R59 0
+			DEFS = []
+			USES = [R59]
+			LIVE IN = [R59]
+			LIVE OUT = []
+	112.        MOVA R60 _b          /* line 24 */
+			DEFS = [R60]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R60]
+	113.        ADDI R60 R60 #1 
+			DEFS = [R60, PSW]
+			USES = [R60]
+			LIVE IN = [R60]
+			LIVE OUT = [R60]
+	114.        ADD R61 R0 (R60) 
+			DEFS = [R61, PSW]
+			USES = [R0, R60]
+			LIVE IN = [R60]
+			LIVE OUT = [R61]
+	115.        WRITE R61 0
+			DEFS = []
+			USES = [R61]
+			LIVE IN = [R61]
+			LIVE OUT = []
+	116.        MOVA R62 _b          /* line 25 */
+			DEFS = [R62]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R62]
+	117.        ADDI R62 R62 #2 
+			DEFS = [R62, PSW]
+			USES = [R62]
+			LIVE IN = [R62]
+			LIVE OUT = [R62]
+	118.        ADD R63 R0 (R62) 
+			DEFS = [R63, PSW]
+			USES = [R0, R62]
+			LIVE IN = [R62]
+			LIVE OUT = [R63]
+	119.        WRITE R63 0
+			DEFS = []
+			USES = [R63]
+			LIVE IN = [R63]
+			LIVE OUT = []
+	120.        MOVA R64 _b          /* line 26 */
+			DEFS = [R64]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R64]
+	121.        ADDI R64 R64 #3 
+			DEFS = [R64, PSW]
+			USES = [R64]
+			LIVE IN = [R64]
+			LIVE OUT = [R64]
+	122.        ADD R65 R0 (R64) 
+			DEFS = [R65, PSW]
+			USES = [R0, R64]
+			LIVE IN = [R64]
+			LIVE OUT = [R65]
+	123.        WRITE R65 0
+			DEFS = []
+			USES = [R65]
+			LIVE IN = [R65]
+			LIVE OUT = []
+	124.        MOVA R66 _b          /* line 27 */
+			DEFS = [R66]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R66]
+	125.        ADDI R66 R66 #4 
+			DEFS = [R66, PSW]
+			USES = [R66]
+			LIVE IN = [R66]
+			LIVE OUT = [R66]
+	126.        ADD R67 R0 (R66) 
+			DEFS = [R67, PSW]
+			USES = [R0, R66]
+			LIVE IN = [R66]
+			LIVE OUT = [R67]
+	127.        WRITE R67 0
+			DEFS = []
+			USES = [R67]
+			LIVE IN = [R67]
+			LIVE OUT = []
+	128.        MOVA R68 _b          /* line 29 */
+			DEFS = [R68]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R68]
+	129.        ADDI R68 R68 #3 
+			DEFS = [R68, PSW]
+			USES = [R68]
+			LIVE IN = [R68]
+			LIVE OUT = [R68]
+	130.        ADD R69 R0 (R68) 
+			DEFS = [R69, PSW]
+			USES = [R0, R68]
+			LIVE IN = [R68]
+			LIVE OUT = [R69]
+	131.        MOVA R70 _b
+			DEFS = [R70]
+			USES = []
+			LIVE IN = [R69]
+			LIVE OUT = [R69, R70]
+	132.        ADDI R70 R70 #4 
+			DEFS = [R70, PSW]
+			USES = [R70]
+			LIVE IN = [R69, R70]
+			LIVE OUT = [R69, R70]
+	133.        ADD R71 R0 (R70) 
+			DEFS = [R71, PSW]
+			USES = [R0, R70]
+			LIVE IN = [R69, R70]
+			LIVE OUT = [R71, R69]
+	134.        MOVA R72 _b
+			DEFS = [R72]
+			USES = []
+			LIVE IN = [R71, R69]
+			LIVE OUT = [R71, R69, R72]
+	135.        ADD R73 R0 (R72) 
+			DEFS = [R73, PSW]
+			USES = [R0, R72]
+			LIVE IN = [R71, R69, R72]
+			LIVE OUT = [R73, R71, R69]
+	136.        MOVA R74 _b
+			DEFS = [R74]
+			USES = []
+			LIVE IN = [R73, R71, R69]
+			LIVE OUT = [R73, R71, R69, R74]
+	137.        ADDI R74 R74 #1 
+			DEFS = [R74, PSW]
+			USES = [R74]
+			LIVE IN = [R73, R71, R69, R74]
+			LIVE OUT = [R73, R71, R69, R74]
+	138.        ADD R75 R0 (R74) 
+			DEFS = [R75, PSW]
+			USES = [R0, R74]
+			LIVE IN = [R73, R71, R69, R74]
+			LIVE OUT = [R75, R73, R71, R69]
+	139.        MOVA R76 _b
+			DEFS = [R76]
+			USES = []
+			LIVE IN = [R75, R73, R71, R69]
+			LIVE OUT = [R75, R73, R71, R69, R76]
+	140.        ADD (R76) R0 R69 
+			DEFS = [PSW]
+			USES = [R0, R69, R76]
+			LIVE IN = [R75, R73, R71, R69, R76]
+			LIVE OUT = [R75, R73, R71]
+	141.        MOVA R77 _b
+			DEFS = [R77]
+			USES = []
+			LIVE IN = [R75, R73, R71]
+			LIVE OUT = [R75, R73, R71, R77]
+	142.        ADDI R77 R77 #1 
+			DEFS = [R77, PSW]
+			USES = [R77]
+			LIVE IN = [R75, R73, R71, R77]
+			LIVE OUT = [R75, R73, R71, R77]
+	143.        ADD (R77) R0 R71 
+			DEFS = [PSW]
+			USES = [R0, R71, R77]
+			LIVE IN = [R75, R73, R71, R77]
+			LIVE OUT = [R75, R73]
+	144.        MOVA R78 _b
+			DEFS = [R78]
+			USES = []
+			LIVE IN = [R75, R73]
+			LIVE OUT = [R75, R73, R78]
+	145.        ADDI R78 R78 #2 
+			DEFS = [R78, PSW]
+			USES = [R78]
+			LIVE IN = [R75, R73, R78]
+			LIVE OUT = [R75, R73, R78]
+	146.        ADD (R78) R0 R73 
+			DEFS = [PSW]
+			USES = [R0, R73, R78]
+			LIVE IN = [R75, R73, R78]
+			LIVE OUT = [R75]
+	147.        MOVA R79 _b
+			DEFS = [R79]
+			USES = []
+			LIVE IN = [R75]
+			LIVE OUT = [R75, R79]
+	148.        ADDI R79 R79 #3 
+			DEFS = [R79, PSW]
+			USES = [R79]
+			LIVE IN = [R75, R79]
+			LIVE OUT = [R75, R79]
+	149.        ADD (R79) R0 R75 
+			DEFS = [PSW]
+			USES = [R0, R75, R79]
+			LIVE IN = [R75, R79]
+			LIVE OUT = []
+	150.        MOVA R80 _b          /* line 30 */
+			DEFS = [R80]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R80]
+	151.        ADD R81 R0 (R80) 
+			DEFS = [R81, PSW]
+			USES = [R0, R80]
+			LIVE IN = [R80]
+			LIVE OUT = [R81]
+	152.        WRITE R81 0
+			DEFS = []
+			USES = [R81]
+			LIVE IN = [R81]
+			LIVE OUT = []
+	153.        MOVA R82 _b          /* line 31 */
+			DEFS = [R82]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R82]
+	154.        ADDI R82 R82 #1 
+			DEFS = [R82, PSW]
+			USES = [R82]
+			LIVE IN = [R82]
+			LIVE OUT = [R82]
+	155.        ADD R83 R0 (R82) 
+			DEFS = [R83, PSW]
+			USES = [R0, R82]
+			LIVE IN = [R82]
+			LIVE OUT = [R83]
+	156.        WRITE R83 0
+			DEFS = []
+			USES = [R83]
+			LIVE IN = [R83]
+			LIVE OUT = []
+	157.        MOVA R84 _b          /* line 32 */
+			DEFS = [R84]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R84]
+	158.        ADDI R84 R84 #2 
+			DEFS = [R84, PSW]
+			USES = [R84]
+			LIVE IN = [R84]
+			LIVE OUT = [R84]
+	159.        ADD R85 R0 (R84) 
+			DEFS = [R85, PSW]
+			USES = [R0, R84]
+			LIVE IN = [R84]
+			LIVE OUT = [R85]
+	160.        WRITE R85 0
+			DEFS = []
+			USES = [R85]
+			LIVE IN = [R85]
+			LIVE OUT = []
+	161.        MOVA R86 _b          /* line 33 */
+			DEFS = [R86]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R86]
+	162.        ADDI R86 R86 #3 
+			DEFS = [R86, PSW]
+			USES = [R86]
+			LIVE IN = [R86]
+			LIVE OUT = [R86]
+	163.        ADD R87 R0 (R86) 
+			DEFS = [R87, PSW]
+			USES = [R0, R86]
+			LIVE IN = [R86]
+			LIVE OUT = [R87]
+	164.        WRITE R87 0
+			DEFS = []
+			USES = [R87]
+			LIVE IN = [R87]
+			LIVE OUT = []
+	165.        MOVA R88 _b          /* line 34 */
+			DEFS = [R88]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R88]
+	166.        ADDI R88 R88 #4 
+			DEFS = [R88, PSW]
+			USES = [R88]
+			LIVE IN = [R88]
+			LIVE OUT = [R88]
+	167.        ADD R89 R0 (R88) 
+			DEFS = [R89, PSW]
+			USES = [R0, R88]
+			LIVE IN = [R88]
+			LIVE OUT = [R89]
+	168.        WRITE R89 0
+			DEFS = []
+			USES = [R89]
+			LIVE IN = [R89]
+			LIVE OUT = []
+	169.        MOVA R90 _a          /* line 36 */
+			DEFS = [R90]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R90]
+	170.        ADDI R90 R90 #6 
+			DEFS = [R90, PSW]
+			USES = [R90]
+			LIVE IN = [R90]
+			LIVE OUT = [R90]
+	171.        ADD R91 R0 (R90) 
+			DEFS = [R91, PSW]
+			USES = [R0, R90]
+			LIVE IN = [R90]
+			LIVE OUT = [R91]
+	172.        MOVA R92 _b
+			DEFS = [R92]
+			USES = []
+			LIVE IN = [R91]
+			LIVE OUT = [R91, R92]
+	173.        ADD (R92) R0 R91 
+			DEFS = [PSW]
+			USES = [R0, R91, R92]
+			LIVE IN = [R91, R92]
+			LIVE OUT = []
+	174.        MOVA R93 _b          /* line 37 */
+			DEFS = [R93]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R93]
+	175.        ADD R94 R0 (R93) 
+			DEFS = [R94, PSW]
+			USES = [R0, R93]
+			LIVE IN = [R93]
+			LIVE OUT = [R94]
+	176.        WRITE R94 0
+			DEFS = []
+			USES = [R94]
+			LIVE IN = [R94]
+			LIVE OUT = []
+	177.        MOVA R95 _b          /* line 38 */
+			DEFS = [R95]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R95]
+	178.        ADDI R95 R95 #1 
+			DEFS = [R95, PSW]
+			USES = [R95]
+			LIVE IN = [R95]
+			LIVE OUT = [R95]
+	179.        ADD R96 R0 (R95) 
+			DEFS = [R96, PSW]
+			USES = [R0, R95]
+			LIVE IN = [R95]
+			LIVE OUT = [R96]
+	180.        WRITE R96 0
+			DEFS = []
+			USES = [R96]
+			LIVE IN = [R96]
+			LIVE OUT = []
+	181.        MOVA R97 _b          /* line 39 */
+			DEFS = [R97]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R97]
+	182.        ADDI R97 R97 #2 
+			DEFS = [R97, PSW]
+			USES = [R97]
+			LIVE IN = [R97]
+			LIVE OUT = [R97]
+	183.        ADD R98 R0 (R97) 
+			DEFS = [R98, PSW]
+			USES = [R0, R97]
+			LIVE IN = [R97]
+			LIVE OUT = [R98]
+	184.        WRITE R98 0
+			DEFS = []
+			USES = [R98]
+			LIVE IN = [R98]
+			LIVE OUT = []
+	185.        MOVA R99 _b          /* line 40 */
+			DEFS = [R99]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R99]
+	186.        ADDI R99 R99 #3 
+			DEFS = [R99, PSW]
+			USES = [R99]
+			LIVE IN = [R99]
+			LIVE OUT = [R99]
+	187.        ADD R100 R0 (R99) 
+			DEFS = [R100, PSW]
+			USES = [R0, R99]
+			LIVE IN = [R99]
+			LIVE OUT = [R100]
+	188.        WRITE R100 0
+			DEFS = []
+			USES = [R100]
+			LIVE IN = [R100]
+			LIVE OUT = []
+	189.        MOVA R101 _b         /* line 41 */
+			DEFS = [R101]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R101]
+	190.        ADDI R101 R101 #4 
+			DEFS = [R101, PSW]
+			USES = [R101]
+			LIVE IN = [R101]
+			LIVE OUT = [R101]
+	191.        ADD R102 R0 (R101) 
+			DEFS = [R102, PSW]
+			USES = [R0, R101]
+			LIVE IN = [R101]
+			LIVE OUT = [R102]
+	192.        WRITE R102 0
+			DEFS = []
+			USES = [R102]
+			LIVE IN = [R102]
+			LIVE OUT = []
+	193.        HALT 
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

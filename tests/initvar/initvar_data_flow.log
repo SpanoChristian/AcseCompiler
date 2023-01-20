@@ -1,0 +1,141 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 4 
+NUMBER OF USED VARIABLES : 6 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.        LOAD R1 _a
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        ANDB R1 R1 R1        /* line 3 */
+			DEFS = [R1, PSW]
+			USES = [R1, R1]
+			LIVE IN = [R1]
+			LIVE OUT = [PSW, R1]
+	3.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [PSW, R1]
+			LIVE OUT = [PSW]
+	4.        BEQ L2
+			DEFS = []
+			USES = [PSW]
+			LIVE IN = [PSW]
+			LIVE OUT = []
+--------------------------
+[BLOCK 2] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 3 
+	1.        ADDI R3 R0 #1001     /* line 4 */
+			DEFS = [R3, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R3]
+	2.        WRITE R3 0
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = []
+	3.        BT L3                /* line 5 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+--------------------------
+[BLOCK 3] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 2 
+	1.  L2    ADDI R4 R0 #1002     /* line 6 */
+			DEFS = [R4, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R4]
+	2.        WRITE R4 0
+			DEFS = []
+			USES = [R4]
+			LIVE IN = [R4]
+			LIVE OUT = []
+--------------------------
+[BLOCK 4] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 10 
+	1.  L3    LOAD R1 _a
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        WRITE R1 0           /* line 9 */
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R1]
+			LIVE OUT = []
+	3.        LOAD R2 _b
+			DEFS = [R2]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R2]
+	4.        WRITE R2 0           /* line 10 */
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = [R2]
+	5.        ADDI R1 R0 #9        /* line 11 */
+			DEFS = [R1, PSW]
+			USES = [R0]
+			LIVE IN = [R2]
+			LIVE OUT = [R2, R1]
+	6.        WRITE R1 0           /* line 12 */
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R2, R1]
+			LIVE OUT = [R2, R1]
+	7.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R2, R1]
+			LIVE OUT = [R2]
+	8.        WRITE R2 0           /* line 13 */
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = [R2]
+	9.        STORE R2 _b
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = []
+	10.        HALT                 /* line 14 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

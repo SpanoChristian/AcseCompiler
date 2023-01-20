@@ -1,0 +1,86 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 6 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 11 
+	1.        NOP                  /* line 4 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+	2.        READ R1 0            /* line 6 */
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	3.        READ R2 0            /* line 7 */
+			DEFS = [R2]
+			USES = []
+			LIVE IN = [R1]
+			LIVE OUT = [R1, R2]
+	4.        ADD R4 R1 R2         /* line 9 */
+			DEFS = [R4, PSW]
+			USES = [R1, R2]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R4, R1, R2]
+	5.        STORE R2 _b
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R4, R1, R2]
+			LIVE OUT = [R4, R1]
+	6.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R4, R1]
+			LIVE OUT = [R4]
+	7.        ADD R3 R0 R4 
+			DEFS = [R3, PSW]
+			USES = [R0, R4]
+			LIVE IN = [R4]
+			LIVE OUT = [R3]
+	8.        NOP                  /* line 11 */
+			DEFS = []
+			USES = []
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+	9.        WRITE R3 0           /* line 13 */
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+	10.        STORE R3 _c
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = []
+	11.        HALT                 /* line 14 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

@@ -1,0 +1,111 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 10 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 16 
+	1.        READ R1 0            /* line 2 */
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        READ R2 0            /* line 3 */
+			DEFS = [R2]
+			USES = []
+			LIVE IN = [R1]
+			LIVE OUT = [R2, R1]
+	3.        ADDI R7 R0 #-1       /* line 4 */
+			DEFS = [R7, PSW]
+			USES = [R0]
+			LIVE IN = [R2, R1]
+			LIVE OUT = [R2, R1, R7]
+	4.        SHLI R7 R7 #16 
+			DEFS = [R7, PSW]
+			USES = [R7]
+			LIVE IN = [R2, R1, R7]
+			LIVE OUT = [R2, R1, R7]
+	5.        ANDB R4 R1 R7 
+			DEFS = [R4, PSW]
+			USES = [R1, R7]
+			LIVE IN = [R2, R1, R7]
+			LIVE OUT = [R4, R2, R1]
+	6.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R4, R2, R1]
+			LIVE OUT = [R4, R2]
+	7.        ADDI R8 R0 #1 
+			DEFS = [R8, PSW]
+			USES = [R0]
+			LIVE IN = [R4, R2]
+			LIVE OUT = [R4, R2, R8]
+	8.        SHLI R8 R8 #16 
+			DEFS = [R8, PSW]
+			USES = [R8]
+			LIVE IN = [R4, R2, R8]
+			LIVE OUT = [R4, R2, R8]
+	9.        ADDI R8 R8 #-1 
+			DEFS = [R8, PSW]
+			USES = [R8]
+			LIVE IN = [R4, R2, R8]
+			LIVE OUT = [R4, R2, R8]
+	10.        ANDB R5 R2 R8 
+			DEFS = [R5, PSW]
+			USES = [R2, R8]
+			LIVE IN = [R4, R2, R8]
+			LIVE OUT = [R4, R5, R2]
+	11.        STORE R2 _b
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R4, R5, R2]
+			LIVE OUT = [R4, R5]
+	12.        ORB R6 R4 R5 
+			DEFS = [R6, PSW]
+			USES = [R4, R5]
+			LIVE IN = [R4, R5]
+			LIVE OUT = [R6]
+	13.        ADD R3 R0 R6 
+			DEFS = [R3, PSW]
+			USES = [R0, R6]
+			LIVE IN = [R6]
+			LIVE OUT = [R3]
+	14.        WRITE R3 0           /* line 5 */
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+	15.        STORE R3 _splice
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = []
+	16.        HALT 
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

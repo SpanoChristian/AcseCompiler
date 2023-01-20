@@ -1,0 +1,486 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 34 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 91 
+	1.        ADDI R4 R0 #0        /* line 4 */
+			DEFS = [R4, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R4]
+	2.        WRITE R4 0
+			DEFS = []
+			USES = [R4]
+			LIVE IN = [R4]
+			LIVE OUT = []
+	3.        ADDI R5 R0 #100      /* line 5 */
+			DEFS = [R5, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R5]
+	4.        WRITE R5 0
+			DEFS = []
+			USES = [R5]
+			LIVE IN = [R5]
+			LIVE OUT = []
+	5.        ADDI R6 R0 #1000     /* line 6 */
+			DEFS = [R6, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R6]
+	6.        WRITE R6 0
+			DEFS = []
+			USES = [R6]
+			LIVE IN = [R6]
+			LIVE OUT = []
+	7.        ADDI R7 R0 #32767    /* line 7 */
+			DEFS = [R7, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R7]
+	8.        WRITE R7 0
+			DEFS = []
+			USES = [R7]
+			LIVE IN = [R7]
+			LIVE OUT = []
+	9.        ADDI R8 R0 #1        /* line 8 */
+			DEFS = [R8, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R8]
+	10.        SHLI R8 R8 #16 
+			DEFS = [R8, PSW]
+			USES = [R8]
+			LIVE IN = [R8]
+			LIVE OUT = [R8]
+	11.        ADDI R8 R8 #-32768 
+			DEFS = [R8, PSW]
+			USES = [R8]
+			LIVE IN = [R8]
+			LIVE OUT = [R8]
+	12.        WRITE R8 0
+			DEFS = []
+			USES = [R8]
+			LIVE IN = [R8]
+			LIVE OUT = []
+	13.        ADDI R9 R0 #1        /* line 9 */
+			DEFS = [R9, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R9]
+	14.        SHLI R9 R9 #16 
+			DEFS = [R9, PSW]
+			USES = [R9]
+			LIVE IN = [R9]
+			LIVE OUT = [R9]
+	15.        ADDI R9 R9 #-15536 
+			DEFS = [R9, PSW]
+			USES = [R9]
+			LIVE IN = [R9]
+			LIVE OUT = [R9]
+	16.        WRITE R9 0
+			DEFS = []
+			USES = [R9]
+			LIVE IN = [R9]
+			LIVE OUT = []
+	17.        ADDI R10 R0 #763     /* line 10 */
+			DEFS = [R10, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R10]
+	18.        SHLI R10 R10 #16 
+			DEFS = [R10, PSW]
+			USES = [R10]
+			LIVE IN = [R10]
+			LIVE OUT = [R10]
+	19.        ADDI R10 R10 #-3968 
+			DEFS = [R10, PSW]
+			USES = [R10]
+			LIVE IN = [R10]
+			LIVE OUT = [R10]
+	20.        WRITE R10 0
+			DEFS = []
+			USES = [R10]
+			LIVE IN = [R10]
+			LIVE OUT = []
+	21.        ADDI R11 R0 #-32768  /* line 11 */
+			DEFS = [R11, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R11]
+	22.        SHLI R11 R11 #16 
+			DEFS = [R11, PSW]
+			USES = [R11]
+			LIVE IN = [R11]
+			LIVE OUT = [R11]
+	23.        ADDI R11 R11 #-1 
+			DEFS = [R11, PSW]
+			USES = [R11]
+			LIVE IN = [R11]
+			LIVE OUT = [R11]
+	24.        WRITE R11 0
+			DEFS = []
+			USES = [R11]
+			LIVE IN = [R11]
+			LIVE OUT = []
+	25.        ADDI R12 R0 #-100    /* line 12 */
+			DEFS = [R12, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R12]
+	26.        WRITE R12 0
+			DEFS = []
+			USES = [R12]
+			LIVE IN = [R12]
+			LIVE OUT = []
+	27.        ADDI R13 R0 #-1000   /* line 13 */
+			DEFS = [R13, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R13]
+	28.        WRITE R13 0
+			DEFS = []
+			USES = [R13]
+			LIVE IN = [R13]
+			LIVE OUT = []
+	29.        ADDI R14 R0 #-32768  /* line 14 */
+			DEFS = [R14, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R14]
+	30.        WRITE R14 0
+			DEFS = []
+			USES = [R14]
+			LIVE IN = [R14]
+			LIVE OUT = []
+	31.        ADDI R15 R0 #-1      /* line 15 */
+			DEFS = [R15, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R15]
+	32.        SHLI R15 R15 #16 
+			DEFS = [R15, PSW]
+			USES = [R15]
+			LIVE IN = [R15]
+			LIVE OUT = [R15]
+	33.        ADDI R15 R15 #32767 
+			DEFS = [R15, PSW]
+			USES = [R15]
+			LIVE IN = [R15]
+			LIVE OUT = [R15]
+	34.        WRITE R15 0
+			DEFS = []
+			USES = [R15]
+			LIVE IN = [R15]
+			LIVE OUT = []
+	35.        ADDI R16 R0 #-1      /* line 16 */
+			DEFS = [R16, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R16]
+	36.        SHLI R16 R16 #16 
+			DEFS = [R16, PSW]
+			USES = [R16]
+			LIVE IN = [R16]
+			LIVE OUT = [R16]
+	37.        ADDI R16 R16 #15536 
+			DEFS = [R16, PSW]
+			USES = [R16]
+			LIVE IN = [R16]
+			LIVE OUT = [R16]
+	38.        WRITE R16 0
+			DEFS = []
+			USES = [R16]
+			LIVE IN = [R16]
+			LIVE OUT = []
+	39.        ADDI R17 R0 #-763    /* line 17 */
+			DEFS = [R17, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R17]
+	40.        SHLI R17 R17 #16 
+			DEFS = [R17, PSW]
+			USES = [R17]
+			LIVE IN = [R17]
+			LIVE OUT = [R17]
+	41.        ADDI R17 R17 #3968 
+			DEFS = [R17, PSW]
+			USES = [R17]
+			LIVE IN = [R17]
+			LIVE OUT = [R17]
+	42.        WRITE R17 0
+			DEFS = []
+			USES = [R17]
+			LIVE IN = [R17]
+			LIVE OUT = []
+	43.        ADDI R18 R0 #-32768  /* line 18 */
+			DEFS = [R18, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R18]
+	44.        SHLI R18 R18 #16 
+			DEFS = [R18, PSW]
+			USES = [R18]
+			LIVE IN = [R18]
+			LIVE OUT = [R18]
+	45.        WRITE R18 0
+			DEFS = []
+			USES = [R18]
+			LIVE IN = [R18]
+			LIVE OUT = []
+	46.        ADDI R1 R0 #1        /* line 21 */
+			DEFS = [R1, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R1]
+	47.        ADDI R2 R0 #-32768   /* line 22 */
+			DEFS = [R2, PSW]
+			USES = [R0]
+			LIVE IN = [R1]
+			LIVE OUT = [R1, R2]
+	48.        SHLI R2 R2 #16 
+			DEFS = [R2, PSW]
+			USES = [R2]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2]
+	49.        ADDI R2 R2 #-1 
+			DEFS = [R2, PSW]
+			USES = [R2]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2]
+	50.        ADDI R3 R0 #0        /* line 23 */
+			DEFS = [R3, PSW]
+			USES = [R0]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2, R3]
+	51.        STORE R3 _c
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R1, R2, R3]
+			LIVE OUT = [R1, R2]
+	52.        ADDI R26 R0 #-32768  /* line 24 */
+			DEFS = [R26, PSW]
+			USES = [R0]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2, R26]
+	53.        SHLI R26 R26 #16 
+			DEFS = [R26, PSW]
+			USES = [R26]
+			LIVE IN = [R1, R2, R26]
+			LIVE OUT = [R1, R2, R26]
+	54.        ADDI R26 R26 #-2 
+			DEFS = [R26, PSW]
+			USES = [R26]
+			LIVE IN = [R1, R2, R26]
+			LIVE OUT = [R1, R2, R26]
+	55.        ADD R19 R1 R26 
+			DEFS = [R19, PSW]
+			USES = [R1, R26]
+			LIVE IN = [R1, R2, R26]
+			LIVE OUT = [R1, R2, R19]
+	56.        WRITE R19 0
+			DEFS = []
+			USES = [R19]
+			LIVE IN = [R1, R2, R19]
+			LIVE OUT = [R1, R2]
+	57.        ADDI R27 R0 #-32768  /* line 25 */
+			DEFS = [R27, PSW]
+			USES = [R0]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2, R27]
+	58.        SHLI R27 R27 #16 
+			DEFS = [R27, PSW]
+			USES = [R27]
+			LIVE IN = [R1, R2, R27]
+			LIVE OUT = [R1, R2, R27]
+	59.        SUB R20 R1 R27 
+			DEFS = [R20, PSW]
+			USES = [R1, R27]
+			LIVE IN = [R1, R2, R27]
+			LIVE OUT = [R1, R2, R20]
+	60.        WRITE R20 0
+			DEFS = []
+			USES = [R20]
+			LIVE IN = [R1, R2, R20]
+			LIVE OUT = [R1, R2]
+	61.        ADDI R28 R0 #-32768  /* line 26 */
+			DEFS = [R28, PSW]
+			USES = [R0]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2, R28]
+	62.        SHLI R28 R28 #16 
+			DEFS = [R28, PSW]
+			USES = [R28]
+			LIVE IN = [R1, R2, R28]
+			LIVE OUT = [R1, R2, R28]
+	63.        ADDI R28 R28 #-1 
+			DEFS = [R28, PSW]
+			USES = [R28]
+			LIVE IN = [R1, R2, R28]
+			LIVE OUT = [R1, R2, R28]
+	64.        MUL R21 R1 R28 
+			DEFS = [R21, PSW]
+			USES = [R1, R28]
+			LIVE IN = [R1, R2, R28]
+			LIVE OUT = [R1, R2, R21]
+	65.        WRITE R21 0
+			DEFS = []
+			USES = [R21]
+			LIVE IN = [R1, R2, R21]
+			LIVE OUT = [R1, R2]
+	66.        ADDI R29 R0 #-32768  /* line 27 */
+			DEFS = [R29, PSW]
+			USES = [R0]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R1, R2, R29]
+	67.        SHLI R29 R29 #16 
+			DEFS = [R29, PSW]
+			USES = [R29]
+			LIVE IN = [R1, R2, R29]
+			LIVE OUT = [R1, R2, R29]
+	68.        ADDI R29 R29 #-1 
+			DEFS = [R29, PSW]
+			USES = [R29]
+			LIVE IN = [R1, R2, R29]
+			LIVE OUT = [R1, R2, R29]
+	69.        DIV R22 R2 R29 
+			DEFS = [R22, PSW]
+			USES = [R2, R29]
+			LIVE IN = [R1, R2, R29]
+			LIVE OUT = [R1, R22]
+	70.        WRITE R22 0
+			DEFS = []
+			USES = [R22]
+			LIVE IN = [R1, R22]
+			LIVE OUT = [R1]
+	71.        ADDI R30 R0 #-32768  /* line 28 */
+			DEFS = [R30, PSW]
+			USES = [R0]
+			LIVE IN = [R1]
+			LIVE OUT = [R1, R30]
+	72.        SHLI R30 R30 #16 
+			DEFS = [R30, PSW]
+			USES = [R30]
+			LIVE IN = [R1, R30]
+			LIVE OUT = [R1, R30]
+	73.        ADDI R30 R30 #-1 
+			DEFS = [R30, PSW]
+			USES = [R30]
+			LIVE IN = [R1, R30]
+			LIVE OUT = [R1, R30]
+	74.        ANDL R23 R1 R30 
+			DEFS = [R23, PSW]
+			USES = [R1, R30]
+			LIVE IN = [R1, R30]
+			LIVE OUT = [R23, R1]
+	75.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R23, R1]
+			LIVE OUT = [R23]
+	76.        WRITE R23 0
+			DEFS = []
+			USES = [R23]
+			LIVE IN = [R23]
+			LIVE OUT = []
+	77.        ADDI R2 R0 #763      /* line 29 */
+			DEFS = [R2, PSW]
+			USES = [R0]
+			LIVE IN = []
+			LIVE OUT = [R2]
+	78.        SHLI R2 R2 #16 
+			DEFS = [R2, PSW]
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = [R2]
+	79.        ADDI R2 R2 #-3968 
+			DEFS = [R2, PSW]
+			USES = [R2]
+			LIVE IN = [R2]
+			LIVE OUT = [R2]
+	80.        ADDI R31 R0 #-32768  /* line 30 */
+			DEFS = [R31, PSW]
+			USES = [R0]
+			LIVE IN = [R2]
+			LIVE OUT = [R2, R31]
+	81.        SHLI R31 R31 #16 
+			DEFS = [R31, PSW]
+			USES = [R31]
+			LIVE IN = [R2, R31]
+			LIVE OUT = [R2, R31]
+	82.        ADDI R31 R31 #-1 
+			DEFS = [R31, PSW]
+			USES = [R31]
+			LIVE IN = [R2, R31]
+			LIVE OUT = [R2, R31]
+	83.        ANDB R24 R2 R31 
+			DEFS = [R24, PSW]
+			USES = [R2, R31]
+			LIVE IN = [R2, R31]
+			LIVE OUT = [R2, R24]
+	84.        WRITE R24 0
+			DEFS = []
+			USES = [R24]
+			LIVE IN = [R2, R24]
+			LIVE OUT = [R2]
+	85.        ADDI R32 R0 #-32768  /* line 31 */
+			DEFS = [R32, PSW]
+			USES = [R0]
+			LIVE IN = [R2]
+			LIVE OUT = [R2, R32]
+	86.        SHLI R32 R32 #16 
+			DEFS = [R32, PSW]
+			USES = [R32]
+			LIVE IN = [R2, R32]
+			LIVE OUT = [R2, R32]
+	87.        ADDI R32 R32 #-1 
+			DEFS = [R32, PSW]
+			USES = [R32]
+			LIVE IN = [R2, R32]
+			LIVE OUT = [R2, R32]
+	88.        ORB R25 R2 R32 
+			DEFS = [R25, PSW]
+			USES = [R2, R32]
+			LIVE IN = [R2, R32]
+			LIVE OUT = [R25, R2]
+	89.        STORE R2 _b
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R25, R2]
+			LIVE OUT = [R25]
+	90.        WRITE R25 0
+			DEFS = []
+			USES = [R25]
+			LIVE IN = [R25]
+			LIVE OUT = []
+	91.        HALT                 /* line 32 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

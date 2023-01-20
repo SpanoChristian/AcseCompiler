@@ -1,0 +1,64 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[value]
+   type = INTEGER, scalar initial value = 0
+   label = _value (ID=0)
+   location = R1
+[result]
+   type = INTEGER, scalar initial value = 0
+   label = _result (ID=1)
+   location = R2
+[power]
+   type = INTEGER, scalar initial value = 0
+   label = _power (ID=2)
+   location = R3
+[negative]
+   type = INTEGER, scalar initial value = 0
+   label = _negative (ID=3)
+   location = R4
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 8 */
+      READ R3 0            /* line 9 */
+      SUBI R5 R3 #0        /* line 11 */
+      SEQ R5 0
+      ANDB R5 R5 R5 
+      BEQ L4
+      ADDI R6 R0 #0        /* line 13 */
+      WRITE R6 0
+      HALT                 /* line 14 */
+L4    SUBI R7 R3 #0        /* line 17 */
+      SLT R7 0
+      ANDB R7 R7 R7 
+      BEQ L5
+      ADDI R4 R0 #1        /* line 19 */
+      SUB R8 R0 R3         /* line 20 */
+      ADD R3 R0 R8 
+      BT L6                /* line 22 */
+L5    ADDI R4 R0 #0        /* line 23 */
+L6    ADD R2 R0 R1         /* line 25 */
+L7    SUBI R9 R3 #1        /* line 26 */
+      SGT R9 0
+      ANDB R9 R9 R9 
+      BEQ L8
+      MUL R10 R2 R1        /* line 28 */
+      ADD R2 R0 R10 
+      SUBI R11 R3 #1       /* line 29 */
+      ADD R3 R0 R11 
+      BT L7                /* line 30 */
+L8    SUBI R12 R4 #1       /* line 32 */
+      SEQ R12 0
+      ANDB R12 R12 R12 
+      BEQ L9
+      ADDI R14 R0 #1       /* line 33 */
+      DIV R13 R14 R2 
+      ADD R2 R0 R13 
+L9    WRITE R2 0           /* line 35 */
+      HALT                 /* line 37 */

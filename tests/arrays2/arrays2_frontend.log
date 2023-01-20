@@ -1,0 +1,87 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+[c]
+   type = INTEGER, array size = 5
+   label = _c (ID=2)
+   location = N/A
+[d]
+   type = INTEGER, array size = 6
+   label = _d (ID=3)
+   location = N/A
+[e]
+   type = INTEGER, scalar initial value = 0
+   label = _e (ID=4)
+   location = R3
+[f]
+   type = INTEGER, scalar initial value = 0
+   label = _f (ID=5)
+   location = R4
+[g]
+   type = INTEGER, scalar initial value = 0
+   label = _g (ID=6)
+   location = R5
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 5 */
+      READ R2 0            /* line 6 */
+      SUBI R6 R1 #0        /* line 8 */
+      SGT R6 0
+      ANDB R6 R6 R6 
+      BEQ L7
+      MOVA R7 _c           /* line 10 */
+      ADDI R8 R0 #1 
+      ADD (R7) R0 R8 
+      MOVA R9 _d           /* line 11 */
+      ADD (R9) R0 R1 
+      MOVA R10 _c          /* line 12 */
+      ADD R11 R0 (R10) 
+      MOVA R12 _d
+      ADD R13 R0 (R12) 
+      ADD R14 R11 R13 
+      ADD R15 R14 R2 
+      MOVA R16 _c
+      ADDI R16 R16 #1 
+      ADD (R16) R0 R15 
+      BT L8                /* line 14 */
+L7    MOVA R17 _c          /* line 16 */
+      ADD (R17) R0 R1 
+      ADD R18 R1 R2        /* line 17 */
+      MOVA R19 _d
+      ADD (R19) R0 R18 
+      MOVA R20 _c          /* line 18 */
+      ADD R21 R0 (R20) 
+      MOVA R22 _d
+      ADD R23 R0 (R22) 
+      SUB R24 R21 R23 
+      MOVA R25 _c
+      ADDI R25 R25 #1 
+      ADD (R25) R0 R24 
+L8    MOVA R26 _c          /* line 21 */
+      ADD R27 R0 (R26) 
+      ADD R3 R0 R27 
+      MOVA R28 _c          /* line 22 */
+      ADDI R28 R28 #1 
+      ADD R29 R0 (R28) 
+      ADD R4 R0 R29 
+      MOVA R30 _d          /* line 23 */
+      ADD R31 R0 (R30) 
+      ADD R5 R0 R31 
+      WRITE R3 0           /* line 24 */
+      WRITE R4 0           /* line 25 */
+      WRITE R5 0           /* line 26 */
+      HALT                 /* line 28 */

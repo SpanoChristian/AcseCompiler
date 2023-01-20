@@ -1,0 +1,76 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 1 
+NUMBER OF USED VARIABLES : 6 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 9 
+	1.        READ R1 0            /* line 3 */
+			DEFS = [R1]
+			USES = []
+			LIVE IN = []
+			LIVE OUT = [R1]
+	2.        READ R2 0            /* line 4 */
+			DEFS = [R2]
+			USES = []
+			LIVE IN = [R1]
+			LIVE OUT = [R1, R2]
+	3.        ADD R4 R1 R2         /* line 6 */
+			DEFS = [R4, PSW]
+			USES = [R1, R2]
+			LIVE IN = [R1, R2]
+			LIVE OUT = [R4, R1, R2]
+	4.        STORE R2 _b
+			DEFS = []
+			USES = [R2]
+			LIVE IN = [R4, R1, R2]
+			LIVE OUT = [R4, R1]
+	5.        STORE R1 _a
+			DEFS = []
+			USES = [R1]
+			LIVE IN = [R4, R1]
+			LIVE OUT = [R4]
+	6.        ADD R3 R0 R4 
+			DEFS = [R3, PSW]
+			USES = [R0, R4]
+			LIVE IN = [R4]
+			LIVE OUT = [R3]
+	7.        WRITE R3 0           /* line 8 */
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = [R3]
+	8.        STORE R3 _somma
+			DEFS = []
+			USES = [R3]
+			LIVE IN = [R3]
+			LIVE OUT = []
+	9.        HALT                 /* line 9 */
+			DEFS = []
+			USES = []
+			LIVE IN = []
+			LIVE OUT = []
+**************************
+
+

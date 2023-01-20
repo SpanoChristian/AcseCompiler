@@ -1,0 +1,212 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, array size = 10
+   label = _a (ID=0)
+   location = N/A
+[b]
+   type = INTEGER, array size = 5
+   label = _b (ID=1)
+   location = N/A
+
+--------------
+ INSTRUCTIONS
+--------------
+      MOVA R1 _a           /* line 4 */
+      ADDI R2 R0 #0 
+      ADD (R1) R0 R2 
+      MOVA R3 _a           /* line 5 */
+      ADDI R3 R3 #1 
+      ADDI R4 R0 #1 
+      ADD (R3) R0 R4 
+      MOVA R5 _a           /* line 6 */
+      ADDI R5 R5 #2 
+      ADDI R6 R0 #2 
+      ADD (R5) R0 R6 
+      MOVA R7 _a           /* line 7 */
+      ADDI R7 R7 #3 
+      ADDI R8 R0 #3 
+      ADD (R7) R0 R8 
+      MOVA R9 _a           /* line 8 */
+      ADDI R9 R9 #4 
+      ADDI R10 R0 #4 
+      ADD (R9) R0 R10 
+      MOVA R11 _a          /* line 9 */
+      ADDI R11 R11 #5 
+      ADDI R12 R0 #5 
+      ADD (R11) R0 R12 
+      MOVA R13 _a          /* line 10 */
+      ADDI R13 R13 #6 
+      ADDI R14 R0 #6 
+      ADD (R13) R0 R14 
+      MOVA R15 _a          /* line 11 */
+      ADDI R15 R15 #7 
+      ADDI R16 R0 #7 
+      ADD (R15) R0 R16 
+      MOVA R17 _a          /* line 12 */
+      ADDI R17 R17 #8 
+      ADDI R18 R0 #8 
+      ADD (R17) R0 R18 
+      MOVA R19 _a          /* line 13 */
+      ADDI R19 R19 #9 
+      ADDI R20 R0 #9 
+      ADD (R19) R0 R20 
+      MOVA R21 _a          /* line 15 */
+      ADD R22 R0 (R21) 
+      MOVA R23 _a
+      ADDI R23 R23 #1 
+      ADD R24 R0 (R23) 
+      MOVA R25 _a
+      ADDI R25 R25 #2 
+      ADD R26 R0 (R25) 
+      MOVA R27 _a
+      ADDI R27 R27 #3 
+      ADD R28 R0 (R27) 
+      MOVA R29 _a
+      ADDI R29 R29 #4 
+      ADD R30 R0 (R29) 
+      MOVA R31 _b
+      ADD (R31) R0 R22 
+      MOVA R32 _b
+      ADDI R32 R32 #1 
+      ADD (R32) R0 R24 
+      MOVA R33 _b
+      ADDI R33 R33 #2 
+      ADD (R33) R0 R26 
+      MOVA R34 _b
+      ADDI R34 R34 #3 
+      ADD (R34) R0 R28 
+      MOVA R35 _b
+      ADDI R35 R35 #4 
+      ADD (R35) R0 R30 
+      MOVA R36 _b          /* line 16 */
+      ADD R37 R0 (R36) 
+      WRITE R37 0
+      MOVA R38 _b          /* line 17 */
+      ADDI R38 R38 #1 
+      ADD R39 R0 (R38) 
+      WRITE R39 0
+      MOVA R40 _b          /* line 18 */
+      ADDI R40 R40 #2 
+      ADD R41 R0 (R40) 
+      WRITE R41 0
+      MOVA R42 _b          /* line 19 */
+      ADDI R42 R42 #3 
+      ADD R43 R0 (R42) 
+      WRITE R43 0
+      MOVA R44 _b          /* line 20 */
+      ADDI R44 R44 #4 
+      ADD R45 R0 (R44) 
+      WRITE R45 0
+      MOVA R46 _a          /* line 22 */
+      ADDI R46 R46 #9 
+      ADD R47 R0 (R46) 
+      MOVA R48 _a
+      ADD R49 R0 (R48) 
+      MOVA R50 _a
+      ADDI R50 R50 #1 
+      ADD R51 R0 (R50) 
+      MOVA R52 _a
+      ADDI R52 R52 #2 
+      ADD R53 R0 (R52) 
+      MOVA R54 _b
+      ADD (R54) R0 R47 
+      MOVA R55 _b
+      ADDI R55 R55 #1 
+      ADD (R55) R0 R49 
+      MOVA R56 _b
+      ADDI R56 R56 #2 
+      ADD (R56) R0 R51 
+      MOVA R57 _b
+      ADDI R57 R57 #3 
+      ADD (R57) R0 R53 
+      MOVA R58 _b          /* line 23 */
+      ADD R59 R0 (R58) 
+      WRITE R59 0
+      MOVA R60 _b          /* line 24 */
+      ADDI R60 R60 #1 
+      ADD R61 R0 (R60) 
+      WRITE R61 0
+      MOVA R62 _b          /* line 25 */
+      ADDI R62 R62 #2 
+      ADD R63 R0 (R62) 
+      WRITE R63 0
+      MOVA R64 _b          /* line 26 */
+      ADDI R64 R64 #3 
+      ADD R65 R0 (R64) 
+      WRITE R65 0
+      MOVA R66 _b          /* line 27 */
+      ADDI R66 R66 #4 
+      ADD R67 R0 (R66) 
+      WRITE R67 0
+      MOVA R68 _b          /* line 29 */
+      ADDI R68 R68 #3 
+      ADD R69 R0 (R68) 
+      MOVA R70 _b
+      ADDI R70 R70 #4 
+      ADD R71 R0 (R70) 
+      MOVA R72 _b
+      ADD R73 R0 (R72) 
+      MOVA R74 _b
+      ADDI R74 R74 #1 
+      ADD R75 R0 (R74) 
+      MOVA R76 _b
+      ADD (R76) R0 R69 
+      MOVA R77 _b
+      ADDI R77 R77 #1 
+      ADD (R77) R0 R71 
+      MOVA R78 _b
+      ADDI R78 R78 #2 
+      ADD (R78) R0 R73 
+      MOVA R79 _b
+      ADDI R79 R79 #3 
+      ADD (R79) R0 R75 
+      MOVA R80 _b          /* line 30 */
+      ADD R81 R0 (R80) 
+      WRITE R81 0
+      MOVA R82 _b          /* line 31 */
+      ADDI R82 R82 #1 
+      ADD R83 R0 (R82) 
+      WRITE R83 0
+      MOVA R84 _b          /* line 32 */
+      ADDI R84 R84 #2 
+      ADD R85 R0 (R84) 
+      WRITE R85 0
+      MOVA R86 _b          /* line 33 */
+      ADDI R86 R86 #3 
+      ADD R87 R0 (R86) 
+      WRITE R87 0
+      MOVA R88 _b          /* line 34 */
+      ADDI R88 R88 #4 
+      ADD R89 R0 (R88) 
+      WRITE R89 0
+      MOVA R90 _a          /* line 36 */
+      ADDI R90 R90 #6 
+      ADD R91 R0 (R90) 
+      MOVA R92 _b
+      ADD (R92) R0 R91 
+      MOVA R93 _b          /* line 37 */
+      ADD R94 R0 (R93) 
+      WRITE R94 0
+      MOVA R95 _b          /* line 38 */
+      ADDI R95 R95 #1 
+      ADD R96 R0 (R95) 
+      WRITE R96 0
+      MOVA R97 _b          /* line 39 */
+      ADDI R97 R97 #2 
+      ADD R98 R0 (R97) 
+      WRITE R98 0
+      MOVA R99 _b          /* line 40 */
+      ADDI R99 R99 #3 
+      ADD R100 R0 (R99) 
+      WRITE R100 0
+      MOVA R101 _b         /* line 41 */
+      ADDI R101 R101 #4 
+      ADD R102 R0 (R101) 
+      WRITE R102 0
+      HALT 

@@ -1,0 +1,29 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+[somma]
+   type = INTEGER, scalar initial value = 0
+   label = _somma (ID=2)
+   location = R3
+
+--------------
+ INSTRUCTIONS
+--------------
+      READ R1 0            /* line 3 */
+      READ R2 0            /* line 4 */
+      ADD R4 R1 R2         /* line 6 */
+      ADD R3 R0 R4 
+      WRITE R3 0           /* line 8 */
+      HALT                 /* line 9 */

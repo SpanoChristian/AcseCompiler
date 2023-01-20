@@ -1,0 +1,72 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, scalar initial value = 0
+   label = _a (ID=0)
+   location = R1
+[b]
+   type = INTEGER, scalar initial value = 0
+   label = _b (ID=1)
+   location = R2
+[c]
+   type = INTEGER, scalar initial value = 0
+   label = _c (ID=2)
+   location = R3
+
+--------------
+ INSTRUCTIONS
+--------------
+      ADDI R4 R0 #0        /* line 4 */
+      WRITE R4 0
+      ADDI R5 R0 #100      /* line 5 */
+      WRITE R5 0
+      ADDI R6 R0 #1000     /* line 6 */
+      WRITE R6 0
+      ADDI R7 R0 #32767    /* line 7 */
+      WRITE R7 0
+      ADDI R8 R0 #32768    /* line 8 */
+      WRITE R8 0
+      ADDI R9 R0 #50000    /* line 9 */
+      WRITE R9 0
+      ADDI R10 R0 #50000000  /* line 10 */
+      WRITE R10 0
+      ADDI R11 R0 #2147483647  /* line 11 */
+      WRITE R11 0
+      ADDI R12 R0 #-100    /* line 12 */
+      WRITE R12 0
+      ADDI R13 R0 #-1000   /* line 13 */
+      WRITE R13 0
+      ADDI R14 R0 #-32768  /* line 14 */
+      WRITE R14 0
+      ADDI R15 R0 #-32769  /* line 15 */
+      WRITE R15 0
+      ADDI R16 R0 #-50000  /* line 16 */
+      WRITE R16 0
+      ADDI R17 R0 #-50000000  /* line 17 */
+      WRITE R17 0
+      ADDI R18 R0 #-2147483648  /* line 18 */
+      WRITE R18 0
+      ADDI R1 R0 #1        /* line 21 */
+      ADDI R2 R0 #2147483647  /* line 22 */
+      ADDI R3 R0 #0        /* line 23 */
+      ADDI R19 R1 #2147483646  /* line 24 */
+      WRITE R19 0
+      SUBI R20 R1 #-2147483648  /* line 25 */
+      WRITE R20 0
+      MULI R21 R1 #2147483647  /* line 26 */
+      WRITE R21 0
+      DIVI R22 R2 #2147483647  /* line 27 */
+      WRITE R22 0
+      ANDLI R23 R1 #2147483647  /* line 28 */
+      WRITE R23 0
+      ADDI R2 R0 #50000000  /* line 29 */
+      ANDBI R24 R2 #2147483647  /* line 30 */
+      WRITE R24 0
+      ORBI R25 R2 #2147483647  /* line 31 */
+      WRITE R25 0
+      HALT                 /* line 32 */

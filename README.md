@@ -20,7 +20,8 @@ ACSE was tested on the following operating systems:
 * Windows (both 32 bit or 64 bit) when built with MinGW under MSYS2, or inside Windows Services for Linux (WSL).
 
 If you are using Linux or macOS, ACSE requires the following programs to be installed:
-* a C compiler (for example GCC or clang) • GNU bison
+* a C compiler (for example GCC or clang)
+* GNU bison
 * GNU flex
 If you use Windows, first you must install either the MSYS2 environment or Windows Services for Linux (WSL). Both MSYS2 and Windows Services for Linux (WSL) provide a Linux-like environment inside of Windows. Once you have installed either MSYS2 or WSL, you can use the following instructions just as if you were using Linux or macOS.
 

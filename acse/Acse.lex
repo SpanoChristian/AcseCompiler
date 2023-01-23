@@ -108,6 +108,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "sum"             { return SUM; }
 "weighted"        { return WEIGHTED; }
 "by"              { return BY; }
+"loop_decreasing" { return LOOP_DECREASING; } 
 
 {ID}              { yylval.svalue=strdup(yytext); return IDENTIFIER; }
 {DIGIT}+          { yylval.intval = atoi( yytext );

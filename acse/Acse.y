@@ -112,6 +112,7 @@ extern void yyerror(const char*);
    t_iterate_statement iterate_stmt;
    t_invariant_statement invariant_stmt;
    t_when_stmt when_stmt;
+   t_loop_decreasing_stmt loop_decr_stmt;
 } 
 /*=========================================================================
                                TOKENS 
@@ -141,6 +142,7 @@ extern void yyerror(const char*);
 %token DOLLAR AT
 %token SUM WEIGHTED BY
 
+%token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
 %token <label> DO
 %token <while_stmt> WHILE
@@ -269,9 +271,44 @@ statement   : assign_statement SEMI          { /* does nothing */ }
             | control_statement              { /* does nothing */ }
             | read_write_statement SEMI      { /* does nothing */ }
             | iterate_statement SEMI         { /* does nothing */ }
+            | loop_decreasing_statement SEMI { /* does nothing */}
             //| from_repeat_if_statement SEMI  { /* does nothign */ }
             | count_when_into_statement SEMI { /* does nothing */ }
             | SEMI                           { gen_nop_instruction(program); }
+;
+
+loop_decreasing_statement :
+   LOOP_DECREASING IDENTIFIER BY
+/*       $1            $2     $3   */
+   { // $4
+      $1.l_check = newLabel(program);
+      gen_bt_instruction(program, $1.l_check, 0);
+
+      $1.l_loop = assignNewLabel(program);
+   }
+   exp /* $5 */
+   { /* $6 */
+      int r_s = get_symbol_location(program, $2, 0);
+
+      if ($5.expression_type == IMMEDIATE) {
+         gen_subi_instruction(program, r_s, r_s, $5.value);
+      } else {
+         gen_sub_instruction(program, r_s, r_s, $5.value, CG_DIRECT_ALL);
+      }
+
+      assignLabel(program, $1.l_check);
+      gen_subi_instruction(program, REG_0, r_s, 0);
+      $1.l_exit = newLabel(program);
+      gen_ble_instruction(program, $1.l_exit, 0);
+   }
+   code_block WHILE LPAR exp RPAR 
+/*    $7       $8    $9  $10  $11   */
+   {
+      gen_bne_instruction(program, $1.l_loop, 0);
+      assignLabel(program, $1.l_exit);
+
+      free($2);
+   }
 ;
 
 count_when_into_statement : COUNT LBRACE when_list RBRACE INTO IDENTIFIER 

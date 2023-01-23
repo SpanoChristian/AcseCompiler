@@ -83,14 +83,15 @@
      SUM = 299,
      WEIGHTED = 300,
      BY = 301,
-     INVARIANT = 302,
-     DO = 303,
-     WHILE = 304,
-     IF = 305,
-     ELSE = 306,
-     TYPE = 307,
-     IDENTIFIER = 308,
-     NUMBER = 309
+     LOOP_DECREASING = 302,
+     INVARIANT = 303,
+     DO = 304,
+     WHILE = 305,
+     IF = 306,
+     ELSE = 307,
+     TYPE = 308,
+     IDENTIFIER = 309,
+     NUMBER = 310
    };
 #endif
 /* Tokens.  */
@@ -138,14 +139,15 @@
 #define SUM 299
 #define WEIGHTED 300
 #define BY 301
-#define INVARIANT 302
-#define DO 303
-#define WHILE 304
-#define IF 305
-#define ELSE 306
-#define TYPE 307
-#define IDENTIFIER 308
-#define NUMBER 309
+#define LOOP_DECREASING 302
+#define INVARIANT 303
+#define DO 304
+#define WHILE 305
+#define IF 306
+#define ELSE 307
+#define TYPE 308
+#define IDENTIFIER 309
+#define NUMBER 310
 
 
 
@@ -164,9 +166,10 @@ typedef union YYSTYPE
    t_iterate_statement iterate_stmt;
    t_invariant_statement invariant_stmt;
    t_when_stmt when_stmt;
+   t_loop_decreasing_stmt loop_decr_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 170 "obj/Acse.tab.h"
+#line 173 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

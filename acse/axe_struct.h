@@ -130,6 +130,12 @@ typedef struct t_when_stmt {
    int reg;
 } t_when_stmt;
 
+typedef struct t_loop_decreasing_stmt {
+   t_axe_label *l_loop;
+   t_axe_label *l_exit;
+   t_axe_label *l_check;
+} t_loop_decreasing_stmt;
+
 /* create a label */
 extern t_axe_label *alloc_label(int value);
 

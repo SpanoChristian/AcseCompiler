@@ -1,0 +1,40 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[s]
+   type = INTEGER, scalar initial value = 100
+   label = _s (ID=0)
+   location = R1
+[c]
+   type = INTEGER, scalar initial value = 0
+   label = _c (ID=1)
+   location = R2
+[input]
+   type = INTEGER, scalar initial value = 0
+   label = _input (ID=2)
+   location = R3
+
+--------------
+ INSTRUCTIONS
+--------------
+      BT L3                /* line 3 */
+L4    SUB R1 R1 R2 
+L3    SUBI R0 R1 #0 
+      BLE L5
+      READ R3 0            /* line 4 */
+      ADDI R4 R2 #5        /* line 5 */
+      ADD R2 R0 R4 
+      WRITE R2 0           /* line 6 */
+      SUBI R5 R3 #32       /* line 7 */
+      SGT R5 0
+      SUBI R6 R2 #50 
+      SLT R6 0
+      ANDL R7 R5 R6 
+      BNE L4
+L5    WRITE R3 0           /* line 9 */
+      WRITE R1 0           /* line 10 */
+      HALT 

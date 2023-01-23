@@ -83,15 +83,19 @@
      SUM = 299,
      WEIGHTED = 300,
      BY = 301,
-     LOOP_DECREASING = 302,
-     INVARIANT = 303,
-     DO = 304,
-     WHILE = 305,
-     IF = 306,
-     ELSE = 307,
-     TYPE = 308,
-     IDENTIFIER = 309,
-     NUMBER = 310
+     RMSPLICE = 302,
+     LMSPLICE = 303,
+     DOT = 304,
+     VEC_XOR = 305,
+     LOOP_DECREASING = 306,
+     INVARIANT = 307,
+     DO = 308,
+     WHILE = 309,
+     IF = 310,
+     ELSE = 311,
+     TYPE = 312,
+     IDENTIFIER = 313,
+     NUMBER = 314
    };
 #endif
 /* Tokens.  */
@@ -139,15 +143,19 @@
 #define SUM 299
 #define WEIGHTED 300
 #define BY 301
-#define LOOP_DECREASING 302
-#define INVARIANT 303
-#define DO 304
-#define WHILE 305
-#define IF 306
-#define ELSE 307
-#define TYPE 308
-#define IDENTIFIER 309
-#define NUMBER 310
+#define RMSPLICE 302
+#define LMSPLICE 303
+#define DOT 304
+#define VEC_XOR 305
+#define LOOP_DECREASING 306
+#define INVARIANT 307
+#define DO 308
+#define WHILE 309
+#define IF 310
+#define ELSE 311
+#define TYPE 312
+#define IDENTIFIER 313
+#define NUMBER 314
 
 
 
@@ -169,7 +177,7 @@ typedef union YYSTYPE
    t_loop_decreasing_stmt loop_decr_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 173 "obj/Acse.tab.h"
+#line 181 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

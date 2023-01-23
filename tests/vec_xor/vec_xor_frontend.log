@@ -1,0 +1,76 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, array size = 10
+   label = _a (ID=0)
+   location = N/A
+[b]
+   type = INTEGER, array size = 10
+   label = _b (ID=1)
+   location = N/A
+[c]
+   type = INTEGER, array size = 10
+   label = _c (ID=2)
+   location = N/A
+[i]
+   type = INTEGER, scalar initial value = 0
+   label = _i (ID=3)
+   location = R1
+
+--------------
+ INSTRUCTIONS
+--------------
+      ADDI R1 R0 #0        /* line 6 */
+L4    SUBI R2 R1 #10       /* line 7 */
+      SLT R2 0
+      ANDB R2 R2 R2 
+      BEQ L5
+      MOVA R3 _c           /* line 8 */
+      ADD R3 R3 R1 
+      ADDI R4 R0 #99999 
+      ADD (R3) R0 R4 
+      MOVA R5 _a           /* line 9 */
+      ADD R5 R5 R1 
+      ADD (R5) R0 R1 
+      SUBI R6 R1 #15       /* line 10 */
+      NEG R6 R0 R6 
+      MOVA R7 _b
+      ADD R7 R7 R1 
+      ADD (R7) R0 R6 
+      ADDI R8 R1 #1        /* line 11 */
+      ADD R1 R0 R8 
+      BT L4                /* line 12 */
+L5    ADDI R9 R0 #0        /* line 23 */
+L6    SUBI R10 R9 #10 
+      SLT R10 0
+      BEQ L7
+      MOVA R11 _a
+      ADD R11 R11 R9 
+      ADD R12 R0 (R11) 
+      MOVA R13 _b
+      ADD R13 R13 R9 
+      ADD R14 R0 (R13) 
+      EORB R15 R12 R14 
+      MOVA R16 _c
+      ADD R16 R16 R9 
+      ADD (R16) R0 R15 
+      ADDI R9 R9 #1 
+      BT L6
+L7    ADDI R1 R0 #0        /* line 32 */
+L8    SUBI R17 R1 #10      /* line 33 */
+      SLT R17 0
+      ANDB R17 R17 R17 
+      BEQ L9
+      MOVA R18 _c          /* line 34 */
+      ADD R18 R18 R1 
+      ADD R19 R0 (R18) 
+      WRITE R19 0
+      ADDI R20 R1 #1       /* line 35 */
+      ADD R1 R0 R20 
+      BT L8                /* line 36 */
+L9    HALT 

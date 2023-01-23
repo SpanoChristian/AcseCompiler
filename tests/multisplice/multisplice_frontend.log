@@ -1,0 +1,24 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[x]
+   type = INTEGER, scalar initial value = 524280
+   label = _x (ID=0)
+   location = R1
+
+--------------
+ INSTRUCTIONS
+--------------
+      ANDBI R2 R1 #66584583  /* line 3 */
+      WRITE R2 0
+      ANDBI R3 R1 #2040    /* line 4 */
+      WRITE R3 0
+      ANDBI R4 R1 #516096  /* line 5 */
+      WRITE R4 0
+      ANDBI R5 R1 #518136  /* line 6 */
+      WRITE R5 0
+      HALT 

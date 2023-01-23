@@ -141,6 +141,8 @@ extern void yyerror(const char*);
 %token INTO
 %token DOLLAR AT
 %token SUM WEIGHTED BY
+%token RMSPLICE LMSPLICE DOT
+%token VEC_XOR
 
 %token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
@@ -156,10 +158,11 @@ extern void yyerror(const char*);
 %type <decl> declaration
 %type <list> declaration_list
 %type <label> if_stmt
-
 %type <intval> when_list
 %type <intval> when_block
 %type <list> exp_list
+%type <intval> range
+%type <intval> range_list
 
 /*=========================================================================
                           OPERATOR PRECEDENCES
@@ -178,6 +181,7 @@ extern void yyerror(const char*);
 %left MUL_OP DIV_OP
 %right NOT_OP
 %left DOLLAR AT
+%left DOT
 
 /*=========================================================================
                          BISON GRAMMAR
@@ -272,9 +276,63 @@ statement   : assign_statement SEMI          { /* does nothing */ }
             | read_write_statement SEMI      { /* does nothing */ }
             | iterate_statement SEMI         { /* does nothing */ }
             | loop_decreasing_statement SEMI { /* does nothing */}
-            //| from_repeat_if_statement SEMI  { /* does nothign */ }
             | count_when_into_statement SEMI { /* does nothing */ }
+            | vec_xor_statement SEMI         { /* does nothing */}
             | SEMI                           { gen_nop_instruction(program); }
+;
+
+vec_xor_statement :
+   VEC_XOR LPAR IDENTIFIER COMMA IDENTIFIER COMMA IDENTIFIER RPAR 
+/*   $1     $2      $3      $4      $5       $6       $7      $8     */
+   {
+      t_axe_variable *r_c = getVariable(program, $3);
+      t_axe_variable *r_a = getVariable(program, $5);
+      t_axe_variable *r_b = getVariable(program, $7);
+
+      /* Check if all the variables are arrays */
+      if (!(r_a->isArray || r_b->isArray || r_c->isArray)) {
+         yyerror("I accept arrays only.");
+      } else {
+         if (r_a->arraySize != r_b->arraySize || r_b->arraySize != r_c->arraySize) {
+            yyerror("I accept arrays of the same size only");
+         } else {
+               /* We could also implement it with Loop Unrolling, but for
+                  inefficiency we do not do that. Rather, we use Assembly rationale.
+                  Use Loop Unrolling ONLY FOR SMALL ITERATIONS!
+               */
+
+               int r_i = gen_load_immediate(program, 0);
+               t_axe_label *next = assignNewLabel(program);
+
+               handle_binary_comparison(program, 
+                                        create_expression(r_i, REGISTER),
+                                        create_expression(r_c->arraySize, IMMEDIATE),
+                                        _LT_);
+
+               t_axe_label *exit = newLabel(program);
+               gen_beq_instruction(program, exit, 0);
+
+               /* Loop Body */
+               int r_v1 = loadArrayElement(program, $5, create_expression(r_i, REGISTER));
+               int r_v2 = loadArrayElement(program, $7, create_expression(r_i, REGISTER));
+               int r_dest = getNewRegister(program);
+
+               gen_eorb_instruction(program, r_dest, r_v1, r_v2, CG_DIRECT_ALL);
+               
+               storeArrayElement(program, $3, 
+                  create_expression(r_i, REGISTER), 
+                  create_expression(r_dest, REGISTER));
+
+               gen_addi_instruction(program, r_i, r_i, 1);
+               gen_bt_instruction(program, next, 0);
+
+               assignLabel(program, exit);
+         }
+      }
+      free($3);
+      free($5);
+      free($7);
+   }
 ;
 
 loop_decreasing_statement :
@@ -1012,6 +1070,38 @@ exp: NUMBER      { $$ = create_expression ($1, IMMEDIATE); }
       $$ = sum;
       freeList($6);
    }
+   | exp DOT LMSPLICE range_list RMSPLICE {
+      $$ = handle_bin_numeric_op(program,
+               $1,
+               create_expression($4, IMMEDIATE),
+               ANDB);
+   }
+;
+
+range_list :
+      range_list COMMA range {
+         if (($1 & $3) != 0) {
+            yyerror("Ranges overlap!");
+         }
+
+         $$ = $1 | $3;
+      }
+   |  range {
+         $$ = $1;
+      }
+;
+
+range : 
+      NUMBER MINUS NUMBER
+   /*   $1    $2     $3   */
+      {
+         if ($1 > $3 || $1 < 0 || $1 > 31 || $3 < 0 || $3 > 31) {
+            yyerror("Range boundaries not ordered.");
+         }
+
+         int min = $1, max = $3;
+         $$ = ((1 << (max - min + 1)) - 1) << min;
+      }
 ;
 
 exp_list : exp_list COMMA exp {

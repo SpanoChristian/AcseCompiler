@@ -87,6 +87,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 ":"               { return SLICE; }
 "$"               { return DOLLAR; }
 "@"               { return AT; }
+"."               { return DOT; }
 
 "do"              { return DO; }
 "else"            { return ELSE; }
@@ -108,7 +109,10 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "sum"             { return SUM; }
 "weighted"        { return WEIGHTED; }
 "by"              { return BY; }
-"loop_decreasing" { return LOOP_DECREASING; } 
+"loop_decreasing" { return LOOP_DECREASING; }
+"m<"              { return LMSPLICE; }
+">m"              { return RMSPLICE; }
+"vec_xor"         { return VEC_XOR; }
 
 {ID}              { yylval.svalue=strdup(yytext); return IDENTIFIER; }
 {DIGIT}+          { yylval.intval = atoi( yytext );

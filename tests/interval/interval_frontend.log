@@ -1,0 +1,106 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[a]
+   type = INTEGER, array size = 5
+   label = _a (ID=0)
+   location = R4
+[x]
+   type = INTEGER, scalar initial value = 0
+   label = _x (ID=1)
+   location = R1
+[y]
+   type = INTEGER, scalar initial value = 0
+   label = _y (ID=2)
+   location = R2
+[i]
+   type = INTEGER, scalar initial value = 0
+   label = _i (ID=3)
+   location = R3
+
+--------------
+ INSTRUCTIONS
+--------------
+      ADDI R5 R0 #0        /* line 4 */
+      ADDI R6 R0 #0 
+L4    SUB R0 R5 R5 
+      BGE L5
+      ADDI R0 R6 #5 
+      BEQ L5
+      MOVA R7 _a
+      ADD R7 R7 R5 
+      ADD (R7) R0 R6 
+      ADDI R5 R5 #1 
+      ADDI R6 R6 #1 
+      BT L4
+L5    ADDI R3 R0 #0        /* line 6 */
+L6    SUBI R8 R3 #5        /* line 7 */
+      SLT R8 0
+      ANDB R8 R8 R8 
+      BEQ L7
+      MOVA R9 _a           /* line 8 */
+      ADD R9 R9 R3 
+      ADD R10 R0 (R9) 
+      WRITE R10 0
+      ADDI R11 R3 #1       /* line 9 */
+      ADD R3 R0 R11 
+      BT L6                /* line 10 */
+L7    ADDI R1 R0 #3        /* line 12 */
+      ADDI R2 R0 #10       /* line 13 */
+      ADDI R12 R0 #0       /* line 14 */
+      ADD R13 R0 R1 
+L8    SUB R0 R12 R5 
+      BGE L9
+      ADDI R0 R13 #6 
+      BEQ L9
+      MOVA R14 _a
+      ADD R14 R14 R12 
+      ADD (R14) R0 R13 
+      ADDI R12 R12 #1 
+      ADDI R13 R13 #1 
+      BT L8
+L9    ADDI R3 R0 #0        /* line 16 */
+L10   SUBI R15 R3 #5       /* line 17 */
+      SLT R15 0
+      ANDB R15 R15 R15 
+      BEQ L11
+      MOVA R16 _a          /* line 18 */
+      ADD R16 R16 R3 
+      ADD R17 R0 (R16) 
+      WRITE R17 0
+      ADDI R18 R3 #1       /* line 19 */
+      ADD R3 R0 R18 
+      BT L10               /* line 20 */
+L11   ADDI R19 R1 #1       /* line 22 */
+      ADDI R20 R0 #0 
+      ADD R21 R0 R19 
+L12   SUB R0 R20 R5 
+      BGE L13
+      ADD R0 R21 R2 
+      BEQ L13
+      MOVA R22 _a
+      ADD R22 R22 R20 
+      ADD (R22) R0 R21 
+      ADDI R20 R20 #1 
+      ADDI R21 R21 #1 
+      BT L12
+L13   ADDI R3 R0 #0        /* line 24 */
+L14   SUBI R23 R3 #5       /* line 25 */
+      SLT R23 0
+      ANDB R23 R23 R23 
+      BEQ L15
+      MOVA R24 _a          /* line 26 */
+      ADD R24 R24 R3 
+      ADD R25 R0 (R24) 
+      WRITE R25 0
+      ADDI R26 R3 #1       /* line 27 */
+      ADD R3 R0 R26 
+      BT L14               /* line 28 */
+L15   ADDI R1 R0 #1        /* line 30 */
+      WRITE R1 0           /* line 31 */
+      WRITE R1 0           /* line 33 */
+      HALT                 /* line 34 */

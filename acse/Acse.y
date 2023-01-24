@@ -143,6 +143,7 @@ extern void yyerror(const char*);
 %token SUM WEIGHTED BY
 %token RMSPLICE LMSPLICE DOT
 %token VEC_XOR
+%token INTERVAL
 
 %token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
@@ -275,9 +276,9 @@ statement   : assign_statement SEMI          { /* does nothing */ }
             | control_statement              { /* does nothing */ }
             | read_write_statement SEMI      { /* does nothing */ }
             | iterate_statement SEMI         { /* does nothing */ }
-            | loop_decreasing_statement SEMI { /* does nothing */}
+            | loop_decreasing_statement SEMI { /* does nothing */ }
             | count_when_into_statement SEMI { /* does nothing */ }
-            | vec_xor_statement SEMI         { /* does nothing */}
+            | vec_xor_statement SEMI         { /* does nothing */ }
             | SEMI                           { gen_nop_instruction(program); }
 ;
 
@@ -642,6 +643,105 @@ assign_statement : IDENTIFIER LSQUARE exp RSQUARE ASSIGN exp
 
                assignLabel(program, exit);
             }
+            |  IDENTIFIER ASSIGN LSQUARE exp INTERVAL exp RSQUARE
+            /*   $1        $2     $3     $4    $5     $6    $7   */
+               {
+                  /*
+                     $1: variable to assign the result
+                     $4: lower-bound
+                     $6: upper-bound
+                  */
+                 t_axe_variable *v_dest = getVariable(program, $1);
+                 int r_dest = get_symbol_location(program, $1, 0);
+
+                  if (v_dest == NULL)
+                     yyerror("Variable does not exists!");
+                  
+                  if (v_dest->isArray) { /* Array case */
+                     int r_i = getNewRegister(program);
+                     int r_n = getNewRegister(program);
+
+                     gen_addi_instruction(program, r_i, REG_0, 0);
+                     if ($4.expression_type == REGISTER) {
+                        gen_add_instruction(program, r_n, REG_0, $4.value, CG_DIRECT_ALL);
+                     } else {
+                        gen_addi_instruction(program, r_n, REG_0, $4.value);
+                     }
+                     t_axe_label *l_loop = assignNewLabel(program);
+                     gen_sub_instruction(program, REG_0, r_i, v_dest->arraySize, CG_DIRECT_ALL);
+                     t_axe_label *l_exit = newLabel(program);
+                     gen_bge_instruction(program, l_exit, 0);
+
+                     if ($6.expression_type == REGISTER) {
+                        gen_add_instruction(program, REG_0, r_n, $6.value, CG_DIRECT_ALL);
+                     } else {
+                        gen_addi_instruction(program, REG_0, r_n, $6.value);
+                     }
+                     gen_beq_instruction(program, l_exit, 0);
+
+                     storeArrayElement(program, 
+                        $1, 
+                        create_expression(r_i, REGISTER), 
+                        create_expression(r_n, REGISTER)
+                     );
+                     gen_addi_instruction(program, r_i, r_i, 1);
+                     gen_addi_instruction(program, r_n, r_n, 1);
+                     gen_bt_instruction(program, l_loop, 0);
+
+                     assignLabel(program, l_exit);
+
+                  } else { /* Scalar case */
+                  /*
+                     All the following code can be avoided by using
+                     handle binary comparison 
+                     // $6 > $4 case
+                     if ($4.expression_type == IMMEDIATE) { // $4 is a constant
+                        if ($6.expression_type == IMMEDIATE) { // $6 is a constant
+                           if ($4.value != $6.value) {
+                              gen_addi_instruction(program, r_dest, REG_0, $4.value);
+                           }
+                        }
+                     } else {
+                        // handle register operator => generate code
+                        int r_exp1, r_exp2;
+                        if ($4.expression_type == IMMEDIATE) {
+                           r_exp1 = gen_load_immediate(program, $4.value);
+                        } else {
+                           r_exp1 = $4.value;
+                        }
+                        if ($6.expression_type == IMMEDIATE) {
+                           r_exp2 = gen_load_immediate(program, $6.value);
+                        } else {
+                           r_exp2 = $6.value;
+                        }
+                        gen_sub_instruction(program, REG_0, r_exp1, r_exp2, CG_DIRECT_ALL);
+                        t_axe_label *l_skip = newLabel(program);
+                        gen_beq_instruction(program, l_skip, 0);
+                        gen_add_instruction(program, r_dest, REG_0, r_exp1, CG_DIRECT_ALL);
+                        assignLabel(prgoram, l_skip); */
+                        int r_exp1, r_exp2;
+                        t_axe_expression e_check =
+                        handle_binary_comparison(program, $4, $6, _EQ_);
+                        if (e_check.expression_type == IMMEDIATE) {
+                           // e_check.value == ($4.value == $6.value)
+                           if (e_check.value == 0) {
+                              gen_addi_instruction(program, r_dest, REG_0, $4.value);
+                           }
+                        } else {
+                           t_axe_label *l_skip = newLabel(program);
+                           if ($4.expression_type == IMMEDIATE) {
+                              r_exp1 = gen_load_immediate(program, $4.value);
+                           } else {
+                              r_exp1 = $4.value;
+                           }
+                           gen_bne_instruction(program, l_skip, 0);
+                           gen_add_instruction(program, r_dest, REG_0, r_exp1, CG_DIRECT_ALL);
+                           assignLabel(program, l_skip);
+                        }
+                     }
+                     
+                     free($1); 
+               }   
 ;
             
 if_statement   : if_stmt

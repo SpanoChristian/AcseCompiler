@@ -87,15 +87,16 @@
      LMSPLICE = 303,
      DOT = 304,
      VEC_XOR = 305,
-     LOOP_DECREASING = 306,
-     INVARIANT = 307,
-     DO = 308,
-     WHILE = 309,
-     IF = 310,
-     ELSE = 311,
-     TYPE = 312,
-     IDENTIFIER = 313,
-     NUMBER = 314
+     INTERVAL = 306,
+     LOOP_DECREASING = 307,
+     INVARIANT = 308,
+     DO = 309,
+     WHILE = 310,
+     IF = 311,
+     ELSE = 312,
+     TYPE = 313,
+     IDENTIFIER = 314,
+     NUMBER = 315
    };
 #endif
 /* Tokens.  */
@@ -147,15 +148,16 @@
 #define LMSPLICE 303
 #define DOT 304
 #define VEC_XOR 305
-#define LOOP_DECREASING 306
-#define INVARIANT 307
-#define DO 308
-#define WHILE 309
-#define IF 310
-#define ELSE 311
-#define TYPE 312
-#define IDENTIFIER 313
-#define NUMBER 314
+#define INTERVAL 306
+#define LOOP_DECREASING 307
+#define INVARIANT 308
+#define DO 309
+#define WHILE 310
+#define IF 311
+#define ELSE 312
+#define TYPE 313
+#define IDENTIFIER 314
+#define NUMBER 315
 
 
 
@@ -177,7 +179,7 @@ typedef union YYSTYPE
    t_loop_decreasing_stmt loop_decr_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 181 "obj/Acse.tab.h"
+#line 183 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

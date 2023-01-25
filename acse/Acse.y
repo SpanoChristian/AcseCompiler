@@ -113,6 +113,7 @@ extern void yyerror(const char*);
    t_invariant_statement invariant_stmt;
    t_when_stmt when_stmt;
    t_loop_decreasing_stmt loop_decr_stmt;
+   t_converge_stmt converge_stmt;
 } 
 /*=========================================================================
                                TOKENS 
@@ -145,6 +146,7 @@ extern void yyerror(const char*);
 %token VEC_XOR
 %token INTERVAL
 
+%token <converge_stmt> CONVERGE
 %token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
 %token <label> DO
@@ -483,9 +485,31 @@ control_statement : if_statement         { /* does nothing */ }
             | while_statement            { /* does nothing */ }
             | do_while_statement SEMI    { /* does nothing */ }
             | return_statement SEMI      { /* does nothing */ }
+            | converge_statement         { /* does nothing */ }
 ;
 
+converge_statement :
+   CONVERGE IDENTIFIER
+/*    $1       $2       */
+   {
+      t_axe_variable *var = getVariable(program, $2);
 
+      if (var->isArray) {
+         yyerror("Unexpected argument to converge statement. Arrays are not accepted.");
+         YYERROR;
+      }
+
+      $1.r_tmp = getNewRegister(program);
+      $1.r_var = get_symbol_location(program, $2, 0);
+
+      $1.l_loop = assignNewLabel(program);
+      gen_add_instruction(program, $1.r_tmp, REG_0, $1.r_var, CG_DIRECT_ALL);
+   } 
+   code_block
+   {
+      gen_sub_instruction(program, REG_0, $1.r_var, $1.r_tmp, CG_DIRECT_ALL);
+      gen_bne_instruction(program, $1.l_loop, 0);
+   }
 
 read_write_statement : read_statement  { /* does nothing */ }
                      | write_statement { /* does nothing */ }
@@ -673,9 +697,9 @@ assign_statement : IDENTIFIER LSQUARE exp RSQUARE ASSIGN exp
                      gen_bge_instruction(program, l_exit, 0);
 
                      if ($6.expression_type == REGISTER) {
-                        gen_add_instruction(program, REG_0, r_n, $6.value, CG_DIRECT_ALL);
+                        gen_sub_instruction(program, REG_0, r_n, $6.value, CG_DIRECT_ALL);
                      } else {
-                        gen_addi_instruction(program, REG_0, r_n, $6.value);
+                        gen_subi_instruction(program, REG_0, r_n, $6.value);
                      }
                      gen_beq_instruction(program, l_exit, 0);
 
@@ -721,7 +745,7 @@ assign_statement : IDENTIFIER LSQUARE exp RSQUARE ASSIGN exp
                         assignLabel(prgoram, l_skip); */
                         int r_exp1, r_exp2;
                         t_axe_expression e_check =
-                        handle_binary_comparison(program, $4, $6, _EQ_);
+                           handle_binary_comparison(program, $4, $6, _EQ_);
                         if (e_check.expression_type == IMMEDIATE) {
                            // e_check.value == ($4.value == $6.value)
                            if (e_check.value == 0) {

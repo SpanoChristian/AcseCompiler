@@ -29,7 +29,7 @@
       ADDI R6 R0 #0 
 L4    SUB R0 R5 R5 
       BGE L5
-      ADDI R0 R6 #5 
+      SUBI R0 R6 #5 
       BEQ L5
       MOVA R7 _a
       ADD R7 R7 R5 
@@ -55,7 +55,7 @@ L7    ADDI R1 R0 #3        /* line 12 */
       ADD R13 R0 R1 
 L8    SUB R0 R12 R5 
       BGE L9
-      ADDI R0 R13 #6 
+      SUBI R0 R13 #6 
       BEQ L9
       MOVA R14 _a
       ADD R14 R14 R12 
@@ -80,7 +80,7 @@ L11   ADDI R19 R1 #1       /* line 22 */
       ADD R21 R0 R19 
 L12   SUB R0 R20 R5 
       BGE L13
-      ADD R0 R21 R2 
+      SUB R0 R21 R2 
       BEQ L13
       MOVA R22 _a
       ADD R22 R22 R20 

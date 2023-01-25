@@ -88,15 +88,16 @@
      DOT = 304,
      VEC_XOR = 305,
      INTERVAL = 306,
-     LOOP_DECREASING = 307,
-     INVARIANT = 308,
-     DO = 309,
-     WHILE = 310,
-     IF = 311,
-     ELSE = 312,
-     TYPE = 313,
-     IDENTIFIER = 314,
-     NUMBER = 315
+     CONVERGE = 307,
+     LOOP_DECREASING = 308,
+     INVARIANT = 309,
+     DO = 310,
+     WHILE = 311,
+     IF = 312,
+     ELSE = 313,
+     TYPE = 314,
+     IDENTIFIER = 315,
+     NUMBER = 316
    };
 #endif
 /* Tokens.  */
@@ -149,15 +150,16 @@
 #define DOT 304
 #define VEC_XOR 305
 #define INTERVAL 306
-#define LOOP_DECREASING 307
-#define INVARIANT 308
-#define DO 309
-#define WHILE 310
-#define IF 311
-#define ELSE 312
-#define TYPE 313
-#define IDENTIFIER 314
-#define NUMBER 315
+#define CONVERGE 307
+#define LOOP_DECREASING 308
+#define INVARIANT 309
+#define DO 310
+#define WHILE 311
+#define IF 312
+#define ELSE 313
+#define TYPE 314
+#define IDENTIFIER 315
+#define NUMBER 316
 
 
 
@@ -177,9 +179,10 @@ typedef union YYSTYPE
    t_invariant_statement invariant_stmt;
    t_when_stmt when_stmt;
    t_loop_decreasing_stmt loop_decr_stmt;
+   t_converge_stmt converge_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 183 "obj/Acse.tab.h"
+#line 186 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

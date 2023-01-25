@@ -8,7 +8,7 @@ _i:   .WORD 0
       ADDI R2 R0 #0
 L4:   SUB R0 R1 R1
       BGE L5
-      ADDI R0 R2 #5
+      SUBI R0 R2 #5
       BEQ L5
       MOVA R3 _a
       ADD R3 R3 R1
@@ -41,7 +41,7 @@ L7:   ADDI R4 R0 #3        /* line 12 */
       STORE R4 _x
 L8:   SUB R0 R5 R1
       BGE L9
-      ADDI R0 R6 #6
+      SUBI R0 R6 #6
       BEQ L9
       MOVA R7 _a
       ADD R7 R7 R5
@@ -74,7 +74,7 @@ L11:  LOAD R4 _x
 L12:  SUB R0 R5 R1
       BGE L13
       LOAD R3 _y
-      ADD R0 R7 R3
+      SUB R0 R7 R3
       STORE R3 _y
       BEQ L13
       MOVA R3 _a

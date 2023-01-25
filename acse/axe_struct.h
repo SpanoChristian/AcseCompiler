@@ -136,6 +136,12 @@ typedef struct t_loop_decreasing_stmt {
    t_axe_label *l_check;
 } t_loop_decreasing_stmt;
 
+typedef struct t_converge_stmt {
+   t_axe_label *l_loop;
+   int r_tmp;
+   int r_var;
+} t_converge_stmt;
+
 /* create a label */
 extern t_axe_label *alloc_label(int value);
 

@@ -89,6 +89,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "@"               { return AT; }
 "."               { return DOT; }
 ".."              { return INTERVAL; }
+"converge"        { return CONVERGE; }
 
 "do"              { return DO; }
 "else"            { return ELSE; }

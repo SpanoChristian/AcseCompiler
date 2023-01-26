@@ -921,6 +921,7 @@ return_statement : RETURN
                } else {
                   gen_add_instruction(program, top->r_exec_val, REG_0, $2.value, CG_DIRECT_ALL);
                }
+               
                gen_bt_instruction(program, top->l_exit, 0);
             }
 ;

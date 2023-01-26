@@ -1,0 +1,78 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 6 
+NUMBER OF USED VARIABLES : 10 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 6 
+	1.        READ R2 0            /* line 3 */
+	2.        ADDI R3 R0 #0        /* line 5 */
+	3.        SUBI R4 R2 #10       /* line 6 */
+	4.        SGT R4 0
+	5.        ANDB R4 R4 R4 
+	6.        BEQ L3
+--------------------------
+[BLOCK 2] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 4 
+	1.        MULI R5 R2 #2        /* line 7 */
+	2.        SUBI R6 R5 #10 
+	3.        ADD R3 R0 R6 
+	4.        BT L2
+--------------------------
+[BLOCK 3] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L3    SUBI R7 R2 #0        /* line 8 */
+	2.        SGT R7 0
+	3.        ANDB R7 R7 R7 
+	4.        BEQ L4
+--------------------------
+[BLOCK 4] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 2 
+	1.        ADD R3 R0 R2         /* line 9 */
+	2.        BT L2
+--------------------------
+[BLOCK 5] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 2 
+	1.  L4    ADDI R3 R0 #0        /* line 10 */
+	2.        BT L2
+--------------------------
+[BLOCK 6] 
+NUMBER OF PREDECESSORS : 3 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L2    MULI R8 R3 #2        /* line 11 */
+	2.        ADD R1 R0 R8 
+	3.        WRITE R1 0           /* line 13 */
+	4.        HALT 
+**************************
+
+

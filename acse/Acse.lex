@@ -116,6 +116,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "m<"              { return LMSPLICE; }
 ">m"              { return RMSPLICE; }
 "vec_xor"         { return VEC_XOR; }
+"exec"            { return EXEC; }
 
 {ID}              { yylval.svalue=strdup(yytext); return IDENTIFIER; }
 {DIGIT}+          { yylval.intval = atoi( yytext );

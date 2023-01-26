@@ -91,6 +91,7 @@ t_reg_allocator *RA;       /* Register allocator. It implements the "Linear
 t_io_infos *file_infos;    /* input and output files used by the compiler */
 
 t_list *breakStack = NULL;
+t_list *returnStack = NULL;
 
 extern int yylex(void);
 extern void yyerror(const char*);
@@ -146,8 +147,9 @@ extern void yyerror(const char*);
 %token RMSPLICE LMSPLICE DOT
 %token VEC_XOR
 %token INTERVAL
-
 %token BREAK
+%token EXEC
+
 %token <converge_stmt> CONVERGE
 %token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
@@ -906,6 +908,21 @@ return_statement : RETURN
                /* insert an HALT instruction */
                gen_halt_instruction(program);
             }
+            | RETURN exp 
+            {  
+               if (returnStack == NULL) {
+                  yyerror("Return with expression outside an exec operator!");
+                  YYERROR;
+               }
+               t_return_stmt *top = (t_return_stmt *)LDATA(returnStack);
+
+               if ($2.expression_type == IMMEDIATE) {
+                  gen_addi_instruction(program, top->r_exec_val, REG_0, $2.value);
+               } else {
+                  gen_add_instruction(program, top->r_exec_val, REG_0, $2.value, CG_DIRECT_ALL);
+               }
+               gen_bt_instruction(program, top->l_exit, 0);
+            }
 ;
 
 read_statement : READ LPAR IDENTIFIER RPAR 
@@ -1230,6 +1247,18 @@ exp: NUMBER      { $$ = create_expression ($1, IMMEDIATE); }
                create_expression($4, IMMEDIATE),
                ANDB);
    }
+   | EXEC LPAR {
+      t_return_stmt *curReturn = malloc(sizeof(t_return_stmt));
+      curReturn->r_exec_val = gen_load_immediate(program, 0);
+      curReturn->l_exit = newLabel(program);
+      returnStack = addFirst(returnStack, curReturn);
+   } code_block RPAR {
+      t_return_stmt *top = (t_return_stmt *)LDATA(returnStack);
+      $$ = create_expression(top->r_exec_val, REGISTER);
+      assignLabel(program, top->l_exit);
+      returnStack = removeFirst(returnStack);
+      free(top);
+   } 
 ;
 
 range_list :

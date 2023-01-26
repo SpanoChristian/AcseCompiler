@@ -142,6 +142,10 @@ typedef struct t_converge_stmt {
    int r_var;
 } t_converge_stmt;
 
+typedef struct t_break_stmt {
+   t_axe_label *l_exit;
+} t_break_stmt;
+
 /* create a label */
 extern t_axe_label *alloc_label(int value);
 

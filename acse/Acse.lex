@@ -90,6 +90,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "."               { return DOT; }
 ".."              { return INTERVAL; }
 "converge"        { return CONVERGE; }
+"break"           { return BREAK; }
 
 "do"              { return DO; }
 "else"            { return ELSE; }

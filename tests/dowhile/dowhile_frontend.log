@@ -27,5 +27,5 @@ L2    ADDI R3 R1 #1        /* line 8 */
       SGT R5 0
       ANDB R5 R5 R5 
       BNE L2
-      WRITE R1 0           /* line 12 */
+L3    WRITE R1 0           /* line 12 */
       HALT                 /* line 13 */

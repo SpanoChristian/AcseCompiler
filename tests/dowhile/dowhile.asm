@@ -18,7 +18,7 @@ L2:   LOAD R1 _a
       SGT R3 0
       ANDB R3 R3 R3
       BNE L2
-      LOAD R1 _a
+L3:   LOAD R1 _a
       WRITE R1 0           /* line 12 */
       STORE R1 _a
       HALT                 /* line 13 */

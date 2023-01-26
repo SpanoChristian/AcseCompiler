@@ -1,0 +1,11 @@
+int x;
+read(x);
+
+while (x > 0) {
+    if (x == 20) {
+        break;
+    }
+    x = x - 1;
+}
+
+write(x);

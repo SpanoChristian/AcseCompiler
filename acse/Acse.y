@@ -90,6 +90,7 @@ t_reg_allocator *RA;       /* Register allocator. It implements the "Linear
 
 t_io_infos *file_infos;    /* input and output files used by the compiler */
 
+t_list *breakStack = NULL;
 
 extern int yylex(void);
 extern void yyerror(const char*);
@@ -146,6 +147,7 @@ extern void yyerror(const char*);
 %token VEC_XOR
 %token INTERVAL
 
+%token BREAK
 %token <converge_stmt> CONVERGE
 %token <loop_decr_stmt> LOOP_DECREASING
 %token <invariant_stmt> INVARIANT
@@ -486,6 +488,15 @@ control_statement : if_statement         { /* does nothing */ }
             | do_while_statement SEMI    { /* does nothing */ }
             | return_statement SEMI      { /* does nothing */ }
             | converge_statement         { /* does nothing */ }
+            | break_statement SEMI       { /* does nothing */ }
+;
+
+break_statement :
+   BREAK
+   {
+      t_break_stmt *top = LDATA(breakStack);
+      gen_bt_instruction(program, top->l_exit, 0);
+   }
 ;
 
 converge_statement :
@@ -509,6 +520,8 @@ converge_statement :
    {
       gen_sub_instruction(program, REG_0, $1.r_var, $1.r_tmp, CG_DIRECT_ALL);
       gen_bne_instruction(program, $1.l_loop, 0);
+      
+      free($2);
    }
 
 read_write_statement : read_statement  { /* does nothing */ }
@@ -833,6 +846,10 @@ while_statement  : WHILE
                       * to the first instruction after the while code
                       * block */
                      $1.label_end = newLabel(program);
+                     
+                     t_break_stmt *curBreak = malloc(sizeof(t_break_stmt));
+                     curBreak->l_exit = $1.label_end;
+                     breakStack = addFirst(breakStack, curBreak);
 
                      /* if `exp' returns FALSE, jump to the label 
                       * $1.label_end */
@@ -846,6 +863,10 @@ while_statement  : WHILE
 
                      /* fix the label `label_end' */
                      assignLabel(program, $1.label_end);
+
+                     t_break_stmt *curBreak = (t_break_stmt *)LDATA(breakStack);
+                     free(curBreak);
+                     breakStack = removeFirst(breakStack);
                   }
 ;
                   
@@ -857,6 +878,10 @@ do_while_statement  : DO
                         
                         /* fix the label */
                         assignLabel(program, $1);
+
+                        t_break_stmt *curBreak = malloc(sizeof(t_break_stmt));
+                        curBreak->l_exit = newLabel(program);
+                        breakStack = addFirst(breakStack, curBreak);
                      }
                      code_block WHILE LPAR exp RPAR
                      {
@@ -868,6 +893,11 @@ do_while_statement  : DO
 
                            /* if `exp' returns TRUE, jump to the label $1 */
                            gen_bne_instruction (program, $1, 0);
+
+                           t_break_stmt *curBreak = (t_break_stmt *)LDATA(breakStack);
+                           assignLabel(program, curBreak->l_exit);
+                           free(curBreak);
+                           breakStack = removeFirst(breakStack);
                      }
 ;
 

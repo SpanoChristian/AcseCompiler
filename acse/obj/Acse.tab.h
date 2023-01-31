@@ -90,16 +90,17 @@
      INTERVAL = 306,
      BREAK = 307,
      EXEC = 308,
-     CONVERGE = 309,
-     LOOP_DECREASING = 310,
-     INVARIANT = 311,
-     DO = 312,
-     WHILE = 313,
-     IF = 314,
-     ELSE = 315,
-     TYPE = 316,
-     IDENTIFIER = 317,
-     NUMBER = 318
+     ZIP = 309,
+     CONVERGE = 310,
+     LOOP_DECREASING = 311,
+     INVARIANT = 312,
+     DO = 313,
+     WHILE = 314,
+     IF = 315,
+     ELSE = 316,
+     TYPE = 317,
+     IDENTIFIER = 318,
+     NUMBER = 319
    };
 #endif
 /* Tokens.  */
@@ -154,16 +155,17 @@
 #define INTERVAL 306
 #define BREAK 307
 #define EXEC 308
-#define CONVERGE 309
-#define LOOP_DECREASING 310
-#define INVARIANT 311
-#define DO 312
-#define WHILE 313
-#define IF 314
-#define ELSE 315
-#define TYPE 316
-#define IDENTIFIER 317
-#define NUMBER 318
+#define ZIP 309
+#define CONVERGE 310
+#define LOOP_DECREASING 311
+#define INVARIANT 312
+#define DO 313
+#define WHILE 314
+#define IF 315
+#define ELSE 316
+#define TYPE 317
+#define IDENTIFIER 318
+#define NUMBER 319
 
 
 
@@ -186,7 +188,7 @@ typedef union YYSTYPE
    t_converge_stmt converge_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 190 "obj/Acse.tab.h"
+#line 192 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

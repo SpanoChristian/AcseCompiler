@@ -149,6 +149,7 @@ extern void yyerror(const char*);
 %token INTERVAL
 %token BREAK
 %token EXEC
+%token ZIP
 
 %token <converge_stmt> CONVERGE
 %token <loop_decr_stmt> LOOP_DECREASING
@@ -285,7 +286,130 @@ statement   : assign_statement SEMI          { /* does nothing */ }
             | loop_decreasing_statement SEMI { /* does nothing */ }
             | count_when_into_statement SEMI { /* does nothing */ }
             | vec_xor_statement SEMI         { /* does nothing */ }
+            | array_shift SEMI               { /* does nothing */ }
+            | zip_statement SEMI             { /* does nothing */ }
             | SEMI                           { gen_nop_instruction(program); }
+;
+
+zip_statement :
+   IDENTIFIER ASSIGN ZIP LPAR IDENTIFIER COMMA IDENTIFIER RPAR
+/*    $1        $2   $3   $4     $5       $6      $7       $8   */
+   {
+      t_axe_variable *v_src1 = getVariable(program, $7);
+      t_axe_variable *v_src2 = getVariable(program, $5);
+      t_axe_variable *v_dest = getVariable(program, $1);
+
+      if (!(v_src1->isArray || v_src2->isArray || v_dest->isArray)) {
+         yyerror("Zip arguments not an array!");
+         YYERROR;
+      }
+      
+      int n_pairs = MIN(v_src1->arraySize, v_src2->arraySize);
+      int r_srci = gen_load_immediate(program, 0);
+      int r_dsti = gen_load_immediate(program, 0);
+
+      t_axe_label *loop = assignNewLabel(program);
+
+      int r_el = loadArrayElement(program, $5, create_expression(r_srci, REGISTER));
+
+      storeArrayElement(program, 
+         $1, 
+         create_expression(r_dsti, REGISTER),
+         create_expression(r_el, REGISTER));
+
+      gen_addi_instruction(program, r_dsti, r_dsti, 1);
+      gen_subi_instruction(program, REG_0, r_dsti, v_dest->arraySize);
+
+      t_axe_label *exit = newLabel(program);
+      gen_bge_instruction(program, exit, 0);
+
+      r_el = loadArrayElement(program, $7, create_expression(r_srci, REGISTER));
+
+      storeArrayElement(program, 
+         $1, 
+         create_expression(r_dsti, REGISTER),
+         create_expression(r_el, REGISTER));
+      
+      gen_addi_instruction(program, r_dsti, r_dsti, 1);
+
+      gen_subi_instruction(program, REG_0, r_dsti, v_dest->arraySize);
+      gen_bge_instruction(program, exit, 0);
+
+      gen_addi_instruction(program, r_srci, r_srci, 1);
+
+      gen_subi_instruction(program, REG_0, r_srci, n_pairs);
+      gen_blt_instruction(program, loop, 0); /* if r_srci < n_pairs */
+
+      assignLabel(program, exit);
+
+      free($1);
+      free($5);
+      free($7);
+      
+   }
+;
+
+/* 
+   "<<" -> shift left
+   ">>" -> shift right
+*/
+array_shift : 
+   IDENTIFIER SHR_OP exp
+   {
+      t_axe_variable *arr = getVariable(program, $1);
+
+      if (!arr->arraySize) {
+         yyerror("Operand must be an array.");
+         YYERROR;
+      }
+
+      int r_i = gen_load_immediate(program, arr->arraySize - 1);
+      int r_k;
+
+      if ($3.expression_type == REGISTER) {
+         r_k = $3.value;
+      } else {
+         r_k = gen_load_immediate(program, $3.value);
+      }
+
+      t_axe_label *next = assignNewLabel(program);
+
+      handle_binary_comparison(program,
+         create_expression(r_i, REGISTER),
+         create_expression(r_k, REGISTER),
+         _GTEQ_);
+
+      t_axe_label *loop_2 = newLabel(program);
+      gen_beq_instruction(program, loop_2, 0);
+      
+      int r_pos = getNewRegister(program);
+      gen_sub_instruction(program, r_pos, r_i, r_k, CG_DIRECT_ALL);
+      int r_a = loadArrayElement(program, $1, create_expression(r_pos, REGISTER));
+
+      storeArrayElement(program, $1, create_expression(r_i, REGISTER), create_expression(r_a, IMMEDIATE));
+
+      gen_subi_instruction(program, r_i, r_i, 1);
+      gen_bt_instruction(program, next, 0);
+
+      assignLabel(program, loop_2);
+
+      handle_binary_comparison(program,
+         create_expression(r_i, REGISTER),
+         create_expression(0, IMMEDIATE),
+         _GTEQ_);
+      t_axe_label *exit = newLabel(program);
+      gen_beq_instruction(program, exit, 0);
+
+      storeArrayElement(program, $1, create_expression(r_i, REGISTER), create_expression(0, IMMEDIATE));
+      gen_subi_instruction(program, r_i, r_i, 1);
+
+      gen_bt_instruction(program, loop_2, 0);
+
+      assignLabel(program, exit);
+
+      free($1);
+
+   }
 ;
 
 vec_xor_statement :

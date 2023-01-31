@@ -91,6 +91,7 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 ".."              { return INTERVAL; }
 "converge"        { return CONVERGE; }
 "break"           { return BREAK; }
+"zip"             { return ZIP; }
 
 "do"              { return DO; }
 "else"            { return ELSE; }

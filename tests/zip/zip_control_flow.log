@@ -1,0 +1,254 @@
+NOTE : Temporary registers are considered as
+       variables of the intermediate language. 
+       Variable 'R0' (that refers to the 
+       physical register 'R0') is always 
+       considered LIVE-IN for each node of 
+       a basic block. 
+       Thus, in the following control flow graph, 
+       'R0' will never appear as LIVE-IN or LIVE-OUT
+       variable for a statement.
+
+       If you want to consider 'R0' as
+       a normal variable, you have to set
+       to 0 the value of the macro CFLOW_ALWAYS_LIVEIN_R0
+       defined in "cflow_constants.h".
+
+
+**************************
+     CONTROL FLOW GRAPH   
+**************************
+NUMBER OF BASIC BLOCKS : 24 
+NUMBER OF USED VARIABLES : 40 
+--------------------------
+START BASIC BLOCK INFOS.  
+--------------------------
+[BLOCK 1] 
+NUMBER OF PREDECESSORS : 0 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.        ADDI R1 R0 #0        /* line 4 */
+--------------------------
+[BLOCK 2] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L4    SUBI R2 R1 #5        /* line 5 */
+	2.        SLT R2 0
+	3.        ANDB R2 R2 R2 
+	4.        BEQ L5
+--------------------------
+[BLOCK 3] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 7 
+	1.        ADDI R3 R1 #1        /* line 6 */
+	2.        MOVA R4 _a
+	3.        ADD R4 R4 R1 
+	4.        ADD (R4) R0 R3 
+	5.        ADDI R5 R1 #1        /* line 7 */
+	6.        ADD R1 R0 R5 
+	7.        BT L4                /* line 8 */
+--------------------------
+[BLOCK 4] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.  L5    ADDI R1 R0 #0        /* line 9 */
+--------------------------
+[BLOCK 5] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L6    SUBI R6 R1 #6        /* line 10 */
+	2.        SLT R6 0
+	3.        ANDB R6 R6 R6 
+	4.        BEQ L7
+--------------------------
+[BLOCK 6] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 8 
+	1.        ADDI R7 R1 #1        /* line 11 */
+	2.        MULI R8 R7 #10 
+	3.        MOVA R9 _b
+	4.        ADD R9 R9 R1 
+	5.        ADD (R9) R0 R8 
+	6.        ADDI R10 R1 #1       /* line 12 */
+	7.        ADD R1 R0 R10 
+	8.        BT L6                /* line 13 */
+--------------------------
+[BLOCK 7] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.  L7    ADDI R1 R0 #0        /* line 14 */
+--------------------------
+[BLOCK 8] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L8    SUBI R11 R1 #12      /* line 15 */
+	2.        SLT R11 0
+	3.        ANDB R11 R11 R11 
+	4.        BEQ L9
+--------------------------
+[BLOCK 9] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 7 
+	1.        MOVA R12 _c          /* line 16 */
+	2.        ADD R12 R12 R1 
+	3.        ADDI R13 R0 #0 
+	4.        ADD (R12) R0 R13 
+	5.        ADDI R14 R1 #1       /* line 17 */
+	6.        ADD R1 R0 R14 
+	7.        BT L8                /* line 18 */
+--------------------------
+[BLOCK 10] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 2 
+	1.  L9    ADDI R15 R0 #0       /* line 20 */
+	2.        ADDI R16 R0 #0 
+--------------------------
+[BLOCK 11] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 9 
+	1.  L10   MOVA R17 _a
+	2.        ADD R17 R17 R15 
+	3.        ADD R18 R0 (R17) 
+	4.        MOVA R19 _c
+	5.        ADD R19 R19 R16 
+	6.        ADD (R19) R0 R18 
+	7.        ADDI R16 R16 #1 
+	8.        SUBI R0 R16 #12 
+	9.        BGE L11
+--------------------------
+[BLOCK 12] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 9 
+	1.        MOVA R20 _b
+	2.        ADD R20 R20 R15 
+	3.        ADD R21 R0 (R20) 
+	4.        MOVA R22 _c
+	5.        ADD R22 R22 R16 
+	6.        ADD (R22) R0 R21 
+	7.        ADDI R16 R16 #1 
+	8.        SUBI R0 R16 #12 
+	9.        BGE L11
+--------------------------
+[BLOCK 13] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 3 
+	1.        ADDI R15 R15 #1 
+	2.        SUBI R0 R15 #5 
+	3.        BLT L10
+--------------------------
+[BLOCK 14] 
+NUMBER OF PREDECESSORS : 3 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.  L11   ADDI R1 R0 #0        /* line 21 */
+--------------------------
+[BLOCK 15] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L12   SUBI R23 R1 #12      /* line 22 */
+	2.        SLT R23 0
+	3.        ANDB R23 R23 R23 
+	4.        BEQ L13
+--------------------------
+[BLOCK 16] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 7 
+	1.        MOVA R24 _c          /* line 23 */
+	2.        ADD R24 R24 R1 
+	3.        ADD R25 R0 (R24) 
+	4.        WRITE R25 0
+	5.        ADDI R26 R1 #1       /* line 24 */
+	6.        ADD R1 R0 R26 
+	7.        BT L12               /* line 25 */
+--------------------------
+[BLOCK 17] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 2 
+	1.  L13   ADDI R27 R0 #0       /* line 27 */
+	2.        ADDI R28 R0 #0 
+--------------------------
+[BLOCK 18] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 9 
+	1.  L14   MOVA R29 _b
+	2.        ADD R29 R29 R27 
+	3.        ADD R30 R0 (R29) 
+	4.        MOVA R31 _a
+	5.        ADD R31 R31 R28 
+	6.        ADD (R31) R0 R30 
+	7.        ADDI R28 R28 #1 
+	8.        SUBI R0 R28 #5 
+	9.        BGE L15
+--------------------------
+[BLOCK 19] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 9 
+	1.        MOVA R32 _c
+	2.        ADD R32 R32 R27 
+	3.        ADD R33 R0 (R32) 
+	4.        MOVA R34 _a
+	5.        ADD R34 R34 R28 
+	6.        ADD (R34) R0 R33 
+	7.        ADDI R28 R28 #1 
+	8.        SUBI R0 R28 #5 
+	9.        BGE L15
+--------------------------
+[BLOCK 20] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 3 
+	1.        ADDI R27 R27 #1 
+	2.        SUBI R0 R27 #6 
+	3.        BLT L14
+--------------------------
+[BLOCK 21] 
+NUMBER OF PREDECESSORS : 3 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.  L15   ADDI R1 R0 #0        /* line 28 */
+--------------------------
+[BLOCK 22] 
+NUMBER OF PREDECESSORS : 2 
+NUMBER OF SUCCESSORS : 2 
+NUMBER OF INSTRUCTIONS : 4 
+	1.  L16   SUBI R35 R1 #5       /* line 29 */
+	2.        SLT R35 0
+	3.        ANDB R35 R35 R35 
+	4.        BEQ L17
+--------------------------
+[BLOCK 23] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 7 
+	1.        MOVA R36 _a          /* line 30 */
+	2.        ADD R36 R36 R1 
+	3.        ADD R37 R0 (R36) 
+	4.        WRITE R37 0
+	5.        ADDI R38 R1 #1       /* line 31 */
+	6.        ADD R1 R0 R38 
+	7.        BT L16               /* line 32 */
+--------------------------
+[BLOCK 24] 
+NUMBER OF PREDECESSORS : 1 
+NUMBER OF SUCCESSORS : 1 
+NUMBER OF INSTRUCTIONS : 1 
+	1.  L17   HALT 
+**************************
+
+

@@ -150,6 +150,8 @@ extern void yyerror(const char*);
 %token BREAK
 %token EXEC
 %token ZIP
+%token INBOUNDS
+%token PERMUTATE LPERMUTATE RPERMUTATE
 
 %token <converge_stmt> CONVERGE
 %token <loop_decr_stmt> LOOP_DECREASING
@@ -171,6 +173,7 @@ extern void yyerror(const char*);
 %type <list> exp_list
 %type <intval> range
 %type <intval> range_list
+%type <list> perm_list
 
 /*=========================================================================
                           OPERATOR PRECEDENCES
@@ -288,7 +291,83 @@ statement   : assign_statement SEMI          { /* does nothing */ }
             | vec_xor_statement SEMI         { /* does nothing */ }
             | array_shift SEMI               { /* does nothing */ }
             | zip_statement SEMI             { /* does nothing */ }
+            | permutate_stmt SEMI            { /* does nothing */ }
             | SEMI                           { gen_nop_instruction(program); }
+;
+
+permutate_stmt :
+   PERMUTATE LPAR IDENTIFIER COMMA LPERMUTATE perm_list RPERMUTATE RPAR
+   {
+
+      t_axe_variable *arr = getVariable(program, $3);
+
+      if (!arr || !arr->isArray) {
+         yyerror("Permutate only works on arrays.");
+         YYERROR;
+      }
+
+      int r_val_to_write = getNewRegister(program);
+      int r_tmp = getNewRegister(program);
+
+      t_list *perm = $6;
+
+      // val_to_write = a[perm[0]]
+      int first_idx = LINTDATA(perm);  // (int) LDATA(perm);
+      int r_first_val = loadArrayElement(program, $3, create_expression(first_idx, IMMEDIATE));
+      gen_addi_instruction(program, r_val_to_write, r_first_val, 0);
+
+      perm = LNEXT(perm);  // start from pos = 1
+
+      while (perm != NULL) {
+         // perm[i]
+         int index = LINTDATA(perm);
+
+         if (index < 0 || index >= arr->arraySize) {
+            yyerror("Invalid access in permutate statement.");
+            YYERROR;
+         }
+
+         // tmp = a[perm[i]]
+         int r_el = loadArrayElement(program, $3, create_expression(index, IMMEDIATE));
+         gen_addi_instruction(program, r_tmp, r_el, 0);
+
+         // a[perm[i]] = val_to_write
+         storeArrayElement(program, 
+            $3,
+            create_expression(index, IMMEDIATE),
+            create_expression(r_val_to_write, REGISTER));
+         
+         // val_to_write = tmp
+         gen_addi_instruction(program,
+            r_val_to_write,
+            r_tmp,
+            0);
+
+         // Advance inside the list
+         perm = LNEXT(perm);
+      }
+
+      // a[perm[0]] = val_to_write;
+      storeArrayElement(program, 
+         $3, 
+         create_expression(first_idx, IMMEDIATE), 
+         create_expression(r_val_to_write, REGISTER));
+      
+      free($3);
+
+      // De-allocate the list!
+      freeList($6);
+   }
+;
+
+perm_list : 
+   NUMBER COMMA perm_list {
+      /* INTDATA: create a list data item from an integer value */
+      $$ = addFirst($3, INTDATA($1));
+   }
+   | NUMBER {
+      $$ = addFirst(NULL, INTDATA($1));
+   }
 ;
 
 zip_statement :
@@ -904,7 +983,7 @@ assign_statement : IDENTIFIER LSQUARE exp RSQUARE ASSIGN exp
                      }
                      
                      free($1); 
-               }   
+               }
 ;
             
 if_statement   : if_stmt
@@ -1344,8 +1423,19 @@ exp: NUMBER      { $$ = create_expression ($1, IMMEDIATE); }
 
       t_list *cur = $6;
       for (int i = 0; i < arr->arraySize; i++) {
+         /* Check if there are too few elements
+
+            cur == NULL condition:
+            check we reached the end of the list before reaching
+            the end of the array.
+         */
          if (cur == NULL)
             yyerror("Expression list too short!");
+         /* Check end */
+
+         /* Get expression pointer */
+         /* LDATA: get the data associated to this list item. */
+         /* Each item of the list is a POINTER to a t_axe_exp  */
          t_axe_expression *cur_exp = (t_axe_expression *)LDATA(cur);
          int r_val = loadArrayElement(program, $4, 
                            create_expression(i, IMMEDIATE));
@@ -1357,13 +1447,38 @@ exp: NUMBER      { $$ = create_expression ($1, IMMEDIATE); }
                      MUL),
                   ADD);
 
+         /*
+            We can do this since we use cur_exp only just once
+
+            LOOK AT THE ALTERNATIVE AFTER THE END OF THE LOOP
+         */
          free(cur_exp);
+
+         /* point to the next element of the list */
+         /* equivalent to:
+            cur = cur->next;
+         */
          cur = LNEXT(cur);
       }
+
+      /*
+         In case we have to free elements we need to:
+         for (each element EL in the list):
+            free(EL);
+      */
+
+      /*
+         List is too long?
+      */
       if (cur != NULL)
          yyerror("Exp list too long!");
 
       $$ = sum;
+
+      /* ------- ! IMPORTANT ! ----------
+         We always have to free the list
+         AND free the elements in the list
+      */
       freeList($6);
    }
    | exp DOT LMSPLICE range_list RMSPLICE {
@@ -1383,7 +1498,61 @@ exp: NUMBER      { $$ = create_expression ($1, IMMEDIATE); }
       assignLabel(program, top->l_exit);
       returnStack = removeFirst(returnStack);
       free(top);
-   } 
+   }
+   | INBOUNDS LPAR IDENTIFIER ASSIGN IDENTIFIER LSQUARE exp RSQUARE RPAR {
+/*      $1     $2     $3        $4      $5        $6    $7    $8     $9    */
+      t_axe_variable *dst  = getVariable(program, $3);
+      t_axe_variable *src = getVariable(program, $5);
+
+      if (dst->isArray) {
+         yyerror("Destination must be a scalar.");
+         YYERROR;
+      }
+
+      if (!src->isArray) {
+         yyerror("Source variable must be an array.");
+         YYERROR;
+      }
+
+      t_axe_expression ge_cond = handle_binary_comparison(program,
+         $7,
+         create_expression(0, IMMEDIATE),
+         _GTEQ_);
+      
+      t_axe_expression lt_cond = handle_binary_comparison(program,
+         $7,
+         create_expression(src->arraySize, IMMEDIATE),
+         _LT_);
+      
+      t_axe_expression cond = handle_bin_numeric_op(program,
+         ge_cond,
+         lt_cond,
+         ANDL);
+      
+      $$ = cond;
+      
+      int r_dst = get_symbol_location(program, $3, 0);
+
+      if (cond.expression_type == IMMEDIATE) {
+         if (cond.value == 1) {
+            int r_el = loadArrayElement(program, $5, $7);
+            gen_add_instruction(program, r_dst, REG_0, r_el, CG_DIRECT_ALL);
+         }
+      } else { /* Condition not IMMEDIATE */
+         /* EXP_REGISTER.value === Identifier of the register */
+         t_axe_label *l_skip = newLabel(program);
+         gen_andb_instruction(program, REG_0, cond.value, cond.value, CG_DIRECT_ALL);
+         gen_beq_instruction(program, l_skip, 0);
+         int r_el = loadArrayElement(program, $5, $7);
+         gen_add_instruction(program, r_dst, REG_0, r_el, CG_DIRECT_ALL);
+
+         assignLabel(program, l_skip);
+      }
+
+      free($3);
+      free($5);
+
+   }
 ;
 
 range_list :
@@ -1412,6 +1581,19 @@ range :
       }
 ;
 
+/*
+   If    a list of zero-elements was allowed,
+   Then  we can 
+
+   exp_list : 
+      exp_list COMMA exp
+      | 
+   
+   exp_list : 
+      exp_list COMMA exp
+      | %empty
+*/
+
 exp_list : exp_list COMMA exp {
          /*   $1     $2    $3    */
             t_axe_expression *our_exp = malloc(sizeof(t_axe_expression));
@@ -1434,6 +1616,8 @@ exp_list : exp_list COMMA exp {
             *our_exp = $1; // copy the value $1 in the allocated area
 
             /* NULL because the list is empty */
+            /* -1 because we add it as last element*/
+            /* Equivalent to: addLast(NULL, (void *)our_exp) */
             $$ = addElement(NULL, (void *)our_exp, -1);
          }
 ;

@@ -91,16 +91,20 @@
      BREAK = 307,
      EXEC = 308,
      ZIP = 309,
-     CONVERGE = 310,
-     LOOP_DECREASING = 311,
-     INVARIANT = 312,
-     DO = 313,
-     WHILE = 314,
-     IF = 315,
-     ELSE = 316,
-     TYPE = 317,
-     IDENTIFIER = 318,
-     NUMBER = 319
+     INBOUNDS = 310,
+     PERMUTATE = 311,
+     LPERMUTATE = 312,
+     RPERMUTATE = 313,
+     CONVERGE = 314,
+     LOOP_DECREASING = 315,
+     INVARIANT = 316,
+     DO = 317,
+     WHILE = 318,
+     IF = 319,
+     ELSE = 320,
+     TYPE = 321,
+     IDENTIFIER = 322,
+     NUMBER = 323
    };
 #endif
 /* Tokens.  */
@@ -156,16 +160,20 @@
 #define BREAK 307
 #define EXEC 308
 #define ZIP 309
-#define CONVERGE 310
-#define LOOP_DECREASING 311
-#define INVARIANT 312
-#define DO 313
-#define WHILE 314
-#define IF 315
-#define ELSE 316
-#define TYPE 317
-#define IDENTIFIER 318
-#define NUMBER 319
+#define INBOUNDS 310
+#define PERMUTATE 311
+#define LPERMUTATE 312
+#define RPERMUTATE 313
+#define CONVERGE 314
+#define LOOP_DECREASING 315
+#define INVARIANT 316
+#define DO 317
+#define WHILE 318
+#define IF 319
+#define ELSE 320
+#define TYPE 321
+#define IDENTIFIER 322
+#define NUMBER 323
 
 
 
@@ -188,7 +196,7 @@ typedef union YYSTYPE
    t_converge_stmt converge_stmt;
 }
 /* Line 1529 of yacc.c.  */
-#line 192 "obj/Acse.tab.h"
+#line 200 "obj/Acse.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

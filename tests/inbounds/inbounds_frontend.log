@@ -1,0 +1,53 @@
+**************************
+          PROGRAM         
+**************************
+
+-----------
+ VARIABLES
+-----------
+[v]
+   type = INTEGER, scalar initial value = 0
+   label = _v (ID=0)
+   location = R1
+[i]
+   type = INTEGER, scalar initial value = 0
+   label = _i (ID=1)
+   location = R2
+[a]
+   type = INTEGER, array size = 5
+   label = _a (ID=2)
+   location = N/A
+
+--------------
+ INSTRUCTIONS
+--------------
+      MOVA R3 _a           /* line 2 */
+      ADDI R4 R0 #8 
+      ADD (R3) R0 R4 
+      MOVA R5 _a           /* line 3 */
+      ADDI R5 R5 #1 
+      ADDI R6 R0 #6 
+      ADD (R5) R0 R6 
+      MOVA R7 _a           /* line 4 */
+      ADDI R7 R7 #2 
+      ADDI R8 R0 #9 
+      ADD (R7) R0 R8 
+      MOVA R9 _a           /* line 5 */
+      ADDI R9 R9 #3 
+      ADDI R10 R0 #4 
+      ADD (R9) R0 R10 
+      MOVA R11 _a          /* line 6 */
+      ADDI R11 R11 #4 
+      ADDI R12 R0 #7 
+      ADD (R11) R0 R12 
+      MOVA R13 _a          /* line 8 */
+      ADD R14 R0 (R13) 
+      ADD R1 R0 R14 
+      ADDI R15 R0 #1 
+      BEQ L3
+      ADDI R16 R0 #1       /* line 9 */
+      WRITE R16 0
+      BT L4                /* line 10 */
+L3    ADDI R17 R0 #0       /* line 11 */
+      WRITE R17 0
+L4    HALT                 /* line 12 */

@@ -146,6 +146,10 @@ typedef struct t_break_stmt {
    t_axe_label *l_exit;
 } t_break_stmt;
 
+typedef struct t_continue_stmt {
+   t_axe_label *l_cond;
+} t_continue_stmt;
+
 typedef struct t_return_stmt {
    int r_exec_val;
    t_axe_label *l_exit;

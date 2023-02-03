@@ -92,6 +92,10 @@ ID       [a-zA-Z_][a-zA-Z0-9_]*
 "converge"        { return CONVERGE; }
 "break"           { return BREAK; }
 "zip"             { return ZIP; }
+"inbounds"        { return INBOUNDS; }
+"permutate"       { return PERMUTATE; }
+"q["              { return LPERMUTATE; }
+"]p"              { return RPERMUTATE; }
 
 "do"              { return DO; }
 "else"            { return ELSE; }
